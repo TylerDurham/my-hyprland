@@ -1,0 +1,61 @@
+
+#!/usr/bin/env bash
+
+# Omarchy theme hook — hypr-looknfeel
+#
+# Reads accent and background colors from the active Omarchy theme's colors.toml
+# and  writes a Hyprland  gradient border configuration to the Omarchy  theme at
+# ~/.config/omarchy/current/theme/hyprland.conf, then restarts Waybar.
+#
+# Usage: hypr-looknfeel [-t|--test]
+#   -t, --test   Print parsed colors and generated config to stdout; no writes.
+
+TEST=
+declare -A OMARCHY_COLORS
+ 
+# Parse arcuments and options
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -t|--test)    TEST=1; shift ;;
+  esac
+done
+
+# Build an asscoiative array of Omarchy colors from current theme
+while IFS=' = ' read -r key value; do
+    [[ "$value" =~ ^\"#[0-9a-fA-F]+\"$ ]] || continue
+    OMARCHY_COLORS["$key"]="${value//\"/}"
+done < ~/.config/omarchy/current/theme/colors.toml
+
+# Verify
+
+# Build the settings in a docstring
+config=$(cat << EOF
+# This file is not a full hyprland configuration.
+# It is intended to be included in your main hyprland.conf.
+
+\$TOP_LEFT_COLOR = rgb(${OMARCHY_COLORS[accent]#\#})
+\$BOTTOM_RIGHT_COLOR = rgb(${OMARCHY_COLORS[background]#\#})
+
+general {
+    col.active_border = \$TOP_LEFT_COLOR \$BOTTOM_RIGHT_COLOR 30deg
+}
+
+group {
+    col.border_active = \$TOP_LEFT_COLOR
+}
+EOF
+)
+
+if [[ -n "$TEST" ]]; then 
+
+  for k in "${!OMARCHY_COLORS[@]}"; do
+      printf '%s = %s\n' "$k" "${OMARCHY_COLORS[$k]}"
+  done
+
+  echo "$config"
+else
+  
+  # Write to current theme's hyprland config
+  echo "$config" > ~/.config/omarchy/current/theme/hyprland.conf
+  omarchy-restart-waybar
+fi

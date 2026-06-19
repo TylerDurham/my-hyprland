@@ -1,0 +1,109 @@
+
+{
+  "$schema": "/etc/xdg/swaync/configSchema.json",
+  "positionX": "right",
+  "positionY": "top",
+  "layer": "overlay",
+  "control-center-layer": "top",
+  "layer-shell": true,
+  "cssPriority": "user",
+  "control-center-width": 520,
+  "control-center-margin-top": 0,
+  "control-center-margin-bottom": 0,
+  "control-center-margin-right": 0,
+  "control-center-margin-left": 0,
+  "notification-2fa-action": true,
+  "notification-inline-replies": false,
+  "notification-window-width": 380,
+  "notification-icon-size": 48,
+  "notification-body-image-height": 240,
+  "notification-body-image-width": 240,
+  "ignore-gtk-theme": false,
+  "timeout": 8,
+  "timeout-low": 4,
+  "timeout-critical": 0,
+  "fit-to-screen": true,
+  "keyboard-shortcuts": true,
+  "image-visibility": "when-available",
+  "transition-time": 150,
+  "hide-on-clear": true,
+  "hide-on-action": true,
+  "script-fail-notify": true,
+  "widgets": [
+    "mpris",
+    "title",
+    "volume",
+    "notifications",
+    "backlight",
+    "buttons-grid"
+  ],
+  "widget-config": {
+    "title": {
+      "text": "Notifications",
+      "clear-all-button": true,
+      "button-text": "Clear"
+    },
+    "mpris": {
+      "image-size": 80,
+      "image-radius": 10
+    },
+    "volume": {
+      "label": "",
+      "step": 5
+    },
+    "backlight": {
+      "label": "󰃞",
+      "step": 5
+    },
+    "buttons-grid": {
+      "actions": [
+        {
+          "label": "",
+          "command": "alacritty nmtui",
+          "tooltip": "Network"
+        },
+        {
+          "label": "",
+          "command": "blueman-manager",
+          "tooltip": "Bluetooth"
+        },
+        {
+          "label": "󰂛",
+          "command": "swaync-client -d",
+          "type": "toggle",
+          "tooltip": "DND"
+        },
+        {
+          "label": "󰍜",
+          "command": "gnome-network-displays",
+          "tooltip": "Screens"
+        },
+        {
+          "label": "",
+          "command": "~/.local/share/tylerd/bin/set-wallpaper",
+          "tooltip": "Files"
+        },
+        {
+          "label": "",
+          "command": "alacritty bash -i -c 'Settings'",
+          "tooltip": "Settings"
+        },
+        {
+          "label": "",
+          "command": "~/.local/share/tylerd/bin/omarchy-lock-screen",
+          "tooltip": "Lock"
+        },
+        {
+          "label": "󰜉",
+          "command": "reboot",
+          "tooltip": "Reboot"
+        },
+        {
+          "label": "⏻",
+          "command": "shutdown now",
+          "tooltip": "Power Off"
+        }
+      ]
+    }
+  }
+}
