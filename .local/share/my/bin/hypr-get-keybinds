@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Libs
-if ! . "$USER_LIB_DIR/bash/require.sh" logger; then
-  echo "Could not load libraries from '$USER_LIB_DIR'!" >&2
+if ! . "$MY_LIB_DIR/bash/require.sh" logger; then
+  echo "Could not load libraries from '$MY_LIB_DIR'!" >&2
   exit 1
 fi
 

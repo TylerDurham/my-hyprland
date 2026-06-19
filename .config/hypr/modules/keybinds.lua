@@ -44,7 +44,7 @@ hl.bind(
 hl.bind(MAIN_MOD .. " + N", hl.dsp.exec_cmd(NOTES), { description = "󰠮 Launch Notes (" .. NOTES .. ")" })
 hl.bind(
   MAIN_MOD .. " + K",
-  hl.dsp.exec_cmd("~/.local/bin/hypr-show-keybinds"),
+  hl.dsp.exec_cmd("~/.local/share/my/bin/hypr-show-keybinds"),
   { description = "󰌌 Show/Search Hyprland Keybinds" }
 )
 
