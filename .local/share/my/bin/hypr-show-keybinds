@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-$HOME/.local/bin/hypr-get-keybinds | rofi -dmenu \
+$HOME/.local/share/my/bin/hypr-get-keybinds | rofi -dmenu \
   -i \
   -p "Hyprland Keybinds" \
   -width 600 \
