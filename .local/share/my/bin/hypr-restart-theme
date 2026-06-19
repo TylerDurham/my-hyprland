@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+hypr-restart-waybar
+hypr-restart-swayosd
+hyprctl reload

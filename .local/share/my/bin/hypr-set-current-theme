@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+source "$MY_LIB_DIR/bash/require.sh" logger || {
+  echo "ERROR: could not load require.sh logger!"
+  exit 1
+}
+
+# Figure out the theme from the name
+THEME_NAME="${1:-lovely-day}" # Use default
+THEME_PATH="$MY_THEME_DIR/$THEME_NAME"
+
+[[ ! -d "$THEME_PATH" ]] && fatal "Could not load theme '$THEME_NAME' from '$THEME_PATH'!"
+
+debug "MY_THEME_DIR: $MY_THEME_DIR"
+debug "MY_CURRENT_THEME: $MY_CURRENT_THEME_DIR"
+
+# If we find a file called "default", use it. Otherwise, use the first one we find
+BACKGROUND=$(ls -r $THEME_PATH/backgrounds/default.jpg)
+if [[ $? > 0 ]]; then 
+  mapfile -t images < <(ls -t $THEME_PATH/backgrounds/*.{png,svg,jpg,gif})
+  [[ -e "${images[0]}" ]] && BACKGROUND="${images[0]}"
+fi
+
+# TODO: Need to figure out what SWWW can do. 
+awww img $BACKGROUND
+
+# Blow away current symlink and replace with new one
+rm "$MY_CURRENT_THEME_DIR"
+ln -s $THEME_PATH $MY_CURRENT_THEME_DIR
+
+# Restart all the things
+hypr-restart-theme

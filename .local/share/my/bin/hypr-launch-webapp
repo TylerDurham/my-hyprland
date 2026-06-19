@@ -1,0 +1,17 @@
+
+#!/usr/bin/env bash
+
+# omarchy:summary=Launch a URL as a web app in the default supported browser
+# omarchy:args=<url>
+
+browser=$(xdg-settings get default-web-browser)
+
+case $browser in
+google-chrome* | brave* | microsoft-edge* | opera* | vivaldi* | helium*) ;;
+*) browser="chromium.desktop" ;;
+esac
+
+desktop_file=$(ls ~/.local/share/applications/$browser /usr/share/applications/$browser 2>/dev/null | head -1)
+exec_bin=$(grep -m1 '^Exec=' "$desktop_file" | cut -d= -f2 | cut -d' ' -f1)
+
+exec "$exec_bin" --app="$1" "${@:2}"
