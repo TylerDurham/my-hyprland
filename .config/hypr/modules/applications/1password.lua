@@ -5,7 +5,7 @@ hl.window_rule({
     class = "^(1[p|P]assword)$"
   },
   no_screen_share = true,
-  tag = "+modal-window"
+  workspace = "10"
 })
 
 -- hl.notification.create({ text="1Password window rule set.", timeout=1000 })
