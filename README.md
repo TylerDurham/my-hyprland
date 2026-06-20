@@ -1,5 +1,17 @@
-# my-hyprland
+``` figlet
+  __  __                 _   _                  _                 _ 
+ |  \/  |_   _          | | | |_   _ _ __  _ __| | __ _ _ __   __| |
+ | |\/| | | | |  _____  | |_| | | | | '_ \| '__| |/ _` | '_ \ / _` |
+ | |  | | |_| | |_____| |  _  | |_| | |_) | |  | | (_| | | | | (_| |
+ |_|  |_|\__, |         |_| |_|\__, | .__/|_|  |_|\__,_|_| |_|\__,_|
+         |___/                 |___/|_|                             
+```
 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/wayland.png" width="200"/>
+  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/hyprland.png" width="200"/>
+</div>
+ 
 A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration written in Lua — designed for a dual-monitor setup with a cohesive look across apps, fast keybind discoverability, and painless theme switching.
 
 ---
@@ -14,7 +26,6 @@ A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration 
 - **Night light** — automatic warm color temperature at sunset via `hyprsunset` (toggle with `SUPER + SHIFT + N`)
 - **OSD feedback** — volume, microphone, and brightness overlays via `swayosd`
 - **Auto-idle + lock** — brightness dims at 5 min, screen locks at 10 min, display off at 15 min
-- **Web app installer** — `hypr-install-webapp` creates desktop entries for any URL with an auto-fetched favicon
 - **Clipboard history** — persistent clipboard via `cliphist` + `wl-paste`
 
 ---
@@ -58,11 +69,17 @@ A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration 
 | `polkit-gnome` | Authentication agent |
 | `gnome-keyring` | Secrets manager |
 
-### Optional
+## Optional Dependancies
+
+| Name                                                      | Description             |
+|-----------------------------------------------------------|-------------------------|
+| [my-shell](https://github.com/TylerDurham/my-shell)       | My `shell` dotfiles.    |
+| [my-hyprland](https://github.com/TylerDurham/my-nixos)    | My `NixOS` dotfiles. |
+| [my-neovim](https://github.com/TylerDurham/my-neovim)     | My `NeoVim` dotfiles.   |
+
 
 | Package | Purpose |
 |---------|---------|
-| `omarchy` | Theme manager integration |
 | Nerd Fonts (JetBrainsMono) | Required by Rofi and Waybar themes |
 
 ---
