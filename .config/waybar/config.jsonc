@@ -20,7 +20,8 @@
     "power-profiles-daemon"
   ],
   "custom/launcher": {
-    "format": "󰣇",
+    "exec": "~/.local/share/my/bin/sys-get-os-icon",
+    "format": "{}",
     "on-click": "hypr-launch-applications"
   },
   "hyprland/window": {
