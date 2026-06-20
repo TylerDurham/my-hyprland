@@ -8,10 +8,12 @@
 ```
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/wayland.png" width="200"/>
-  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/hyprland.png" width="200"/>
-</div>
- 
+  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/wayland.png" height="200"/>
+  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/hyprland.png" height="200"/>
+</div> 
+
+---
+
 A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration written in Lua — designed for a dual-monitor setup with a cohesive look across apps, fast keybind discoverability, and painless theme switching.
 
 ---
