@@ -6,6 +6,13 @@
   font-size: 14px;
 }
 
+menu {
+  background-color: @background;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid 1px @accent1;
+}
+
 .modules-right, .modules-left, .modules-center {
   border-radius: 15px;
   padding: 0px 5px;
@@ -56,6 +63,10 @@ window#waybar > box {
 #pulseaudio
 {
   margin: 1px 15px;
+}
+
+#tray {
+  margin-left: 15px;
 }
 
 #workspaces {
