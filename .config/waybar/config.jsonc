@@ -11,12 +11,12 @@
     "hyprland/window"
   ],
   "modules-right": [
+    "tray",
     "battery",
     "pulseaudio",
     "idle_inhibitor",
     "bluetooth",
     "network",
-    "tray",
     "power-profiles-daemon"
   ],
   "custom/launcher": {
@@ -134,5 +134,9 @@
     "persistent-workspaces": {
       "*": 5 // 5 workspaces by default on every monitor
     }
+  },
+
+  "tray": {
+    "spacing": 10
   }
 }
