@@ -67,7 +67,9 @@ end
 
 -- Move workspaces to monitors
 hl.bind("SUPER + SHIFT + LEFT", hl.dsp.workspace.move({ monitor = "+1" }), { description = " 󰛽 Move current workspace to monitor on left." })
-hl.bind("SUPER + SHIFT + RIGHT", hl.dsp.workspace.move({ monitor = "-1" }), { description = " 󰛾 Move current workspae to monitor on right." })
+hl.bind("SUPER + SHIFT + RIGHT", hl.dsp.workspace.move({ monitor = "-1" }), { description = " 󰛾 Move current workspace to monitor on right." })
+
+hl.bind("SUPER + CTRL + SHIFT + M", monitors.monitor_status)
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(MAIN_MOD .. " + mouse:272", hl.dsp.window.drag(), { description = "🖱️ Move window." })
