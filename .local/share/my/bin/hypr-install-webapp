@@ -60,8 +60,9 @@ else
   ICON_PATH="$ICON_DIR/$ICON_REF"
 fi
 
+cmd="$HOME/.local/share/my/bin/hypr-launch-webapp"
 # Use custom exec if provided, otherwise default behavior
-EXEC_COMMAND="${CUSTOM_EXEC:-hypr-launch-webapp $APP_URL}"
+EXEC_COMMAND="${CUSTOM_EXEC:-$cmd $APP_URL}"
 
 # Create application .desktop file
 DESKTOP_FILE="$HOME/.local/share/applications/$APP_NAME.desktop"
