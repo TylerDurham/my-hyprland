@@ -33,6 +33,14 @@ hl.window_rule({
 })
 
 hl.window_rule({
+  name = "tui-window",
+  match = { class = "com.snork.my-terminal" },
+  confine_pointer = true,
+  dim_around = true,
+  tag = "+floating-window"
+})
+
+hl.window_rule({
   name = "media-window",
   match = { tag = "media-window" },
   dim_around = true,

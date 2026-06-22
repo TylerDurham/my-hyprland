@@ -11,7 +11,16 @@ google-chrome* | brave* | microsoft-edge* | opera* | vivaldi* | helium*) ;;
 *) browser="chromium.desktop" ;;
 esac
 
-desktop_file=$(ls ~/.local/share/applications/$browser /usr/share/applications/$browser 2>/dev/null | head -1)
+os=$(sys-get-os)
+# if [[ "$(cat /etc/os-release | grep nixos)" ]]; then
+if [[ "$os" == "nixos" ]]; then
+  desktop_file=$(echo "$XDG_DATA_DIRS" | tr ':' '\n' | sed 's#$#/applications/brave-browser.desktop#' | xargs -I{} ls {} 2>/dev/null)
+else 
+  desktop_file=$(ls ~/.local/share/applications/$browser /usr/share/applications/$browser 2>/dev/null | head -1)
+fi
+
+echo "desktop_file: $desktop_file"
+
 exec_bin=$(grep -m1 '^Exec=' "$desktop_file" | cut -d= -f2 | cut -d' ' -f1)
 
 exec "$exec_bin" --app="$1" "${@:2}"
