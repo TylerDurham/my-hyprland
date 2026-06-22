@@ -128,7 +128,15 @@ export MY_LIB_DIR="$HOME/.local/share/my/lib"
 hypr-set-current-theme lovely-day   # or hackerman, catppuccin, matte-black, osaka-jade, everforest
 ```
 
-**6. Start Hyprland**
+**6. Install web apps (optional)**
+
+Installs a curated set of web apps (Excalidraw, Logos, Gitea, GitHub, Claude.ai) as standalone browser-backed desktop entries:
+
+```bash
+./install-webapps.sh
+```
+
+**7. Start Hyprland**
 
 ```bash
 Hyprland
