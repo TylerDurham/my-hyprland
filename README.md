@@ -26,6 +26,7 @@ A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration 
 - **Dual-monitor workspace layout** — workspaces 1–5 on the right monitor, 9–10 on the left
 - **Touchpad gestures** — 3-finger swipe to scroll windows or switch workspaces, 4-finger pinch to fullscreen
 - **Night light** — automatic warm color temperature at sunset via `hyprsunset` (toggle with `SUPER + SHIFT + N`)
+- **Interactive wallpaper picker** — browse and set wallpapers with thumbnail previews via Rofi (`SUPER + SHIFT + W`); supports recursive directory selection
 - **OSD feedback** — volume, microphone, and brightness overlays via `swayosd`
 - **Auto-idle + lock** — brightness dims at 5 min, screen locks at 10 min, display off at 15 min
 - **Clipboard history** — persistent clipboard via `cliphist` + `wl-paste`
@@ -160,11 +161,12 @@ Hyprland
 | `SUPER + K` | Search keybinds |
 | `SUPER + Q` | Close focused window |
 
-### System
+### System / Theme
 
 | Keybind | Action |
 |---------|--------|
 | `SUPER + SHIFT + N` | Toggle night light |
+| `SUPER + SHIFT + W` | Select and set wallpaper |
 
 ### Workspace Navigation
 
