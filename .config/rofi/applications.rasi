@@ -10,8 +10,8 @@
 /*****----- Configuration -----*****/
 configuration {
 	modi:                       "drun";
-    show-icons:                 true;
-    display-drun:               " Applications";
+    show-icons:               true;
+  display-drun:               "Applications";
 	drun-display-format:        "{name}";
 }
 
@@ -32,10 +32,10 @@ window {
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
-    border:                      0px solid;
-    border-radius:               20px;
-    border-color:                @accent1;
-    background-color:            @background-trans;
+    border:                      2px solid;
+    border-radius:               15;
+    border-color:                @surface3;
+    background-color:            @background;
     cursor:                      "default";
 }
 
@@ -55,11 +55,11 @@ mainbox {
 /*****----- Inputbar -----*****/
 inputbar {
     enabled:                     true;
-    spacing:                     0px;
+    spacing:                     5px;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
-    border-radius:               100%;
+    border-radius:               0px;
     border-color:                @accent2;
     background-color:            @background;
     text-color:                  @foreground;
@@ -68,23 +68,27 @@ inputbar {
 
 prompt {
     enabled:                     true;
-    padding:                     15px;
-    border-radius:               100%;
-    background-color:            @background;
-    text-color:                  @accent2;
+    background-color:            @accent2;
+    text-color:                  @background;
+    font-weight: bold;
+    padding:                     7px 25px 7px 25px;
+    border-radius:               25px;
 }
+
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
     str:                         "";
-    padding:                     15px;
-    background-color:            inherit;
+    background-color:            @surface1;
+    padding:                     7px;
     text-color:                  @foreground;
 }
+
 entry {
     enabled:                     true;
-    padding:                     15px 0px;
-    background-color:            inherit;
+    background-color:            @surface1;
+    border-radius:               0px 25px 25px 0px;
+    padding:                     7px;
     text-color:                  inherit;
     cursor:                      text;
     placeholder:                 "Search...";

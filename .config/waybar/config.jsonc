@@ -55,6 +55,7 @@
   "battery": {
     "interval": 60,
     "format": "{capacity}% {icon}",
+    "tooltip-format": "Capacity: {capacity}\nPower (watts): {power}\nTime to charge: {time}",
     "format-icons": {
       "default": [
         "󰂎",
@@ -69,7 +70,7 @@
         "󰂂",
         "󰁹"
       ],
-      "charging": [
+      "plugged": [
         "󰢟",
         "󰢜",
         "󰂆",

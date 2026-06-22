@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-rofi -show drun -theme ~/.config/rofi/applications.rasi -grid
+rofi -show drun \
+  -theme ~/.config/rofi/applications.rasi \
+  -p "My Apps" 
+
