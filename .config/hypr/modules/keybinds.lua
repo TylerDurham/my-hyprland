@@ -107,7 +107,7 @@ end, { description = "Cycle/move to the previous non-empty workspace." })
 
 hl.bind(
 	MAIN_MOD .. " + SHIFT + W",
-	hl.dsp.exec_cmd("hypr-select-and-set-wallpaper"),
+	hl.dsp.exec_cmd("~/.config/hypr/scripts/change-wallpaper.sh"),
 	{ description = " Select and Set Wallpaper" }
 )
 
