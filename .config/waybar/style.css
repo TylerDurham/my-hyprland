@@ -65,7 +65,7 @@ window#waybar > box {
   margin: 1px 15px;
 }
 
-#battery.plugged {
+#battery.charging {
   color: @green;
 }
 
