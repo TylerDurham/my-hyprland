@@ -22,7 +22,7 @@
   "custom/launcher": {
     "exec": "~/.local/share/my/bin/sys-get-os-icon",
     "format": "{}",
-    "on-click": "hypr-launch-applications"
+    "on-click": "rofi-launch-module ~/.config/rofi/modules/system.json"
   },
   "hyprland/window": {
     "max-length": 50
@@ -55,6 +55,7 @@
   "battery": {
     "interval": 60,
     "format": "{capacity}% {icon}",
+    "tooltip-format": "Capacity: {capacity}\nPower (watts): {power}\nTime to charge: {time}",
     "format-icons": {
       "default": [
         "󰂎",

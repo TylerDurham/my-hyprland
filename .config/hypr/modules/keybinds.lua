@@ -20,9 +20,9 @@ local monitors = require("modules.monitors")
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 
-----------------------
----- APP KEYBINDS ----
-----------------------
+----------------------------------
+---- APP KEYBINDS ----------------
+----------------------------------
 
 hl.bind(
 	MAIN_MOD .. " + Return",
@@ -54,9 +54,9 @@ hl.bind(
 	{ description = "󰖔 Toggle Nightlight on/off." }
 )
 
-----------------------------
----- WORKSPACE KEYBINDS ----
-----------------------------
+----------------------------------
+---- WORKSPACE KEYBINDS ----------
+----------------------------------
 -- Switch workspaces with mainMod + [0-9]
 -- Move active window to a workspace with mainMod + SHIFT + [0-9]
 for i = 1, 10 do
@@ -101,19 +101,28 @@ hl.bind(MAIN_MOD .. "+ SHIFT + bracketleft", function()
 	hl.dispatch(hl.dsp.focus({ workspace = "e-1" }))
 end, { description = "Cycle/move to the previous non-empty workspace." })
 
------------------------
+----------------------------------
 ---- THEME/WALLPAPER KEYBINDS ----
------------------------------
+----------------------------------
 
 hl.bind(
 	MAIN_MOD .. " + SHIFT + W",
-	hl.dsp.exec_cmd("hypr-select-and-set-wallpaper"),
+	hl.dsp.exec_cmd("~/.config/hypr/scripts/change-wallpaper.sh"),
 	{ description = " Select and Set Wallpaper" }
 )
 
------------------------
----- MEDIA/ETC. KEYBINDS ----
------------------------------
+----------------------------------
+---- SYSTEM CONTROL --------------
+----------------------------------
+hl.bind(
+	MAIN_MOD .. " + SHIFT + S",
+	hl.dsp.exec_cmd("rofi-launch-module ~/.config/rofi/modules/system.json"),
+  { description = "Launch System Control." }
+)
+
+----------------------------------
+---- MEDIA/ETC. KEYBINDS ---------
+----------------------------------
 
 hl.bind(
 	"XF86AudioRaiseVolume",

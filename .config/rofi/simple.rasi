@@ -33,9 +33,9 @@ window {
     enabled:                     true;
     margin:                      0px;
     padding:                     0px;
-    border:                      1px solid;
+    border:                      2px solid;
     border-radius:               24px;
-    border-color:                @accent1;
+    border-color:                @surface3;
     background-color:            @background;
     cursor:                      "default";
 }
@@ -45,7 +45,7 @@ mainbox {
     enabled:                     true;
     spacing:                     0px;
     margin:                      0px;
-    padding:                     0px;
+    padding:                     5px;
     border:                      0px solid;
     border-radius:               0px 0px 0px 0px;
     border-color:                @accent2;
@@ -57,7 +57,7 @@ mainbox {
 inputbar {
     enabled:                     true;
     spacing:                     10px;
-    margin:                      0px;
+    margin:                      10px;
     padding:                     12px;
     border:                      0px solid;
     border-radius:               0px;
@@ -69,21 +69,27 @@ inputbar {
 
 prompt {
     enabled:                     true;
-    background-color:            @background;
-    text-color:                  @accent2;
+    background-color:            @accent2;
+    text-color:                  @background;
+    font-weight: bold;
+    padding:                     7px 25px 7px 25px;
+    border-radius:               25px;
 }
 
 textbox-prompt-colon {
     enabled:                     true;
     expand:                      false;
     str:                         "";
-    background-color:            inherit;
+    background-color:            @surface1;
+    padding:                     7px;
     text-color:                  @foreground;
 }
 
 entry {
     enabled:                     true;
-    background-color:            inherit;
+    background-color:            @surface1;
+    border-radius:               0px 25px 25px 0px;
+    padding:                     7px;
     text-color:                  inherit;
     cursor:                      text;
     placeholder:                 "Search...";
@@ -103,8 +109,8 @@ listview {
     fixed-height:                true;
     fixed-columns:               true;
     
-    spacing:                     5px;
-    margin:                      0px;
+    spacing:                     2px;
+    margin:                      10px;
     padding:                     0px;
     border:                      0px solid;
     border-radius:               0px;

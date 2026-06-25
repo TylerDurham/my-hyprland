@@ -89,7 +89,7 @@ key=$(echo -e "$rofi_lines" | sort | rofi \
   -show-icons) # launch-rofi --lines 2 --grid --prompt Wallpaper)
 
 # If user didn't select anything, we are done.
-[ -z "$key" ] && exit 1
+[ -z "$key" ] && exit
 
 # User selected something in Rofi; grab the path from our mapping
 selected="${PATH_MAPPINGS[$key]}"
