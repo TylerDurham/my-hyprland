@@ -27,6 +27,7 @@ A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration 
 - **Touchpad gestures** — 3-finger swipe to scroll windows or switch workspaces, 4-finger pinch to fullscreen
 - **Night light** — automatic warm color temperature at sunset via `hyprsunset` (toggle with `SUPER + SHIFT + N`)
 - **Interactive wallpaper picker** — browse and set wallpapers with thumbnail previews via Rofi (`SUPER + SHIFT + W`); supports recursive directory selection
+- **System control menu** — lock, suspend, logout, reboot, or shutdown from a Rofi icon grid (`SUPER + SHIFT + S`)
 - **OSD feedback** — volume, microphone, and brightness overlays via `swayosd`
 - **Auto-idle + lock** — brightness dims at 5 min, screen locks at 10 min, display off at 15 min
 - **Clipboard history** — persistent clipboard via `cliphist` + `wl-paste`
@@ -166,6 +167,7 @@ Hyprland
 | Keybind | Action |
 |---------|--------|
 | `SUPER + SHIFT + N` | Toggle night light |
+| `SUPER + SHIFT + S` | Open system control menu (lock, suspend, logout, reboot, shutdown) |
 | `SUPER + SHIFT + W` | Select and set wallpaper |
 
 ### Workspace Navigation
@@ -258,7 +260,8 @@ This updates the wallpaper, color symlinks, and restarts Waybar and SwayOSD auto
 │   │       ├── windows.lua       # Window rules and floats
 │   │       ├── workspaces.lua    # Workspace-to-monitor assignment
 │   │       └── applications/     # Per-app window rules
-│   ├── rofi/                     # Rofi launcher themes
+│   ├── rofi/                     # Rofi launcher themes and modules
+│   │   └── modules/              # JSON module definitions (system, etc.)
 │   └── swayosd/                  # OSD styling
 └── .local/share/my/
     ├── bin/                      # Custom shell scripts
