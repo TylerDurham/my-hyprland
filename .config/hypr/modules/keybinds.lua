@@ -24,6 +24,18 @@ local monitors = require("modules.monitors")
 ---- APP KEYBINDS ----------------
 ----------------------------------
 
+-- Screenshots
+hl.bind(MAIN_MOD .. " + Print",
+  hl.dsp.exec_cmd("screenshot"),
+  { description = ""}
+)
+
+hl.bind(MAIN_MOD .. " + SHIFT + Print",
+  hl.dsp.exec_cmd("screenshot area"),
+  { description = ""}
+)
+
+-- Main apps
 hl.bind(
 	MAIN_MOD .. " + Return",
 	hl.dsp.exec_cmd(TERMINAL),
