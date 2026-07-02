@@ -19,7 +19,7 @@ hl.window_rule({
   },
   float = true,
   center = true,
-  size = { 1080, 800 },
+  size = { 1280, 800 },
   opacity = "1.0"
 })
 
@@ -48,6 +48,11 @@ hl.window_rule({
   workspace = "9"
 })
 
+hl.window_rule({
+  name = "gtk-window",
+  match = { class = "xdg-desktop-portal-gtk" },
+  tag = "+floating-window"
+})
 -- hl.window_rule({
 --   name = "multimedia-window",
 --   match = {
