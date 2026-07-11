@@ -95,7 +95,7 @@
     "tooltip-format-ethernet": "{ifname} ",
     "tooltip-format-disconnected": "󰖪",
     "max-length": 50,
-    "on-click": "exec nmrs"
+    "on-click": "hypr-launch-tui nmtui"
   },
   "power-profiles-daemon": {
     "format": "{icon}",
