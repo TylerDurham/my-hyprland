@@ -1,21 +1,13 @@
-require("modules.applications.1password")
-require("modules.applications.system")
-require("modules.applications.plex")
-require("modules.applications.brave")
+-- TODO: Need to add to a global module for reuse
+local dir = os.getenv("HOME") .. "/.config/hypr/modules/applications"
+local handle = io.popen('ls "' .. dir .. '"/*.lua 2>/dev/null')
 
--- local config_dir = os.getenv("HOME") .. ".config/hypr/modules/applications"
---
--- for file in io.popen('ls "' .. config_dir .. '"/*.lua 2>/dev/null'):lines() do
---   local basename = file:match("([^/]+)%.lua$")
---
---   if basename ~= "init" then
---     local func, err  = require(file)
---     if func then
---       func()
---     else
---       hl.notification("Error loading " .. basename .. ": " .. err)
---     end
---   end
--- end
---
---
+if handle then
+	for file in handle:lines() do
+		local basename = file:match("([^/]+)%.lua$")
+		if basename and basename ~= "init" then
+			require("modules.applications." .. basename)
+		end
+	end
+	handle:close()
+end

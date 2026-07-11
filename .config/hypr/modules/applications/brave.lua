@@ -1,5 +1,4 @@
 
-
 hl.window_rule({
   name = "brave",
   match = {
