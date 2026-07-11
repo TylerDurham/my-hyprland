@@ -3,7 +3,7 @@
 hl.window_rule({
   name = "obsidian",
   match = {
-    class = "^(obisdian)$"
+    class = "^(obsidian)$"
   },
   workspace = "4"
 })
