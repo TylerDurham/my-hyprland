@@ -1,6 +1,7 @@
 require("modules.applications.1password")
 require("modules.applications.system")
 require("modules.applications.plex")
+require("modules.applications.brave")
 
 -- local config_dir = os.getenv("HOME") .. ".config/hypr/modules/applications"
 --
