@@ -36,7 +36,10 @@ if [ -n "$IMAGE" ]; then
   [[ -L "$IMAGE" ]] && debug "'$IMAGE' exists as symlink" || debug "'$IMAGE' is NOT a symlink"
   [[ -f "$IMAGE" || -L "$IMAGE" ]] || fatal "Image '$IMAGE' does not exist on filesystem!"
 
-  awww img $IMAGE --transition-fps 60 --transition-step 255 --transition-type center
+  link="$HOME/.config/my/background"
+  ln -sf "$IMAGE" "$HOME/.config/my/background"
+
+  awww img $link --transition-fps 60 --transition-step 255 --transition-type center
 
 else
   error "No arguments specified!"
