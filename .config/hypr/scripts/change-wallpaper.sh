@@ -41,7 +41,7 @@ if [[ -z "$wallpaper" ]]; then
   exit 
 fi
 
-echo$(set-wallpaper $wallpaper)
+echo $(set-wallpaper $wallpaper)
 
 thumbnail=$(cache-thumbnail "$wallpaper")
 
