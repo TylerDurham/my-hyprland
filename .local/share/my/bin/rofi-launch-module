@@ -31,13 +31,13 @@ while [[ $# -gt 0 ]]; do
 done
 
 process-modules() {
-  while IFS=$'\t' read -r name icon cmd; do
+  while IFS=$'\t' read -r name icon description cmd; do
     # Add to our modules lookup
     modules["$name"]=$(echo "$cmd" | envsubst)
 
     # Add to data that we'll send to rofi: name and icon
     rofi_lines+="$name\0icon\x1f$ICON_DIR/$icon\n"
-  done < <(jq -r '.lines[] | [.name, .icon, .exec] | @tsv')
+  done < <(jq -r '.lines[] | [.name, .icon, .description, .exec] | @tsv')
 }
 
 # The data we will send to rofi
