@@ -20,5 +20,5 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("waybar") -- Execute waybar, hyprpaper, firefox
   hl.exec_cmd("wl-paste --type image --watch cliphist store")
   hl.exec_cmd("wl-paste --type text --watch cliphist store")
-  hl.exec_cmd("awww img ~/.config/hypr/wallpapers/default.jpg")
+  hl.exec_cmd("awww img ~/.config/my/background")
 end)
