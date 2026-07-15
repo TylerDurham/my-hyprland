@@ -18,6 +18,18 @@ A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration 
 
 ---
 
+***Terminal running btop***
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/terminal-btop.png" width="600"/>
+</div>
+
+***Hyperlock Screen***
+
+<div align="center">
+  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/hyprlock.png" width="600"/>
+</div>
+
 ## Features
 
 - **Lua-based modular config** — each concern (keybinds, monitors, look & feel, windows, workspaces) lives in its own file under `.config/hypr/modules/`
