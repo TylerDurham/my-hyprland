@@ -8,8 +8,8 @@
 ```
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/wayland.png" height="200"/>
-  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/hyprland.png" height="200"/>
+  <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/wayland.png?raw=true" height="200"/>
+  <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/hyprland.png?raw=true" height="200"/>
 </div> 
 
 ---
@@ -21,13 +21,13 @@ A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration 
 ***Terminal running btop***
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/terminal-btop.png" width="600"/>
+  <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/terminal-btop.png?raw=true" width="600"/>
 </div>
 
 ***Hyperlock Screen***
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/TylerDurham/my-hyprland/refs/heads/dev/media/hyprlock.png" width="600"/>
+  <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/hyprlock.png?raw=true" width="600"/>
 </div>
 
 ## Features
