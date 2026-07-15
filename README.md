@@ -6,7 +6,6 @@
  |_|  |_|\__, |         |_| |_|\__, | .__/|_|  |_|\__,_|_| |_|\__,_|
          |___/                 |___/|_|                             
 ```
-
 <div align="center">
   <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/wayland.png?raw=true" height="200"/>
   <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/hyprland.png?raw=true" height="200"/>
@@ -14,8 +13,10 @@
 
 ---
 
-A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration written in Lua — designed for a dual-monitor setup with a cohesive look across apps, fast keybind discoverability, and painless theme switching.
+My [Hyprland](https://hyprland.org/) desktop configuration recently updated to take advantage of 
+Hyprland 0.55's [Lua configuration](https://wiki.hypr.land/Configuring/Start). 
 
+This started out as my minimal extra configuration for the wonderful Omarchy, but when I moved to NixOs, I had to build expand.
 ---
 
 <div align="center">***Terminal running btop***</div>
