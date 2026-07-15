@@ -33,8 +33,8 @@ hl.bind(MAIN_MOD .. " + K",      hl.dsp.exec_cmd("~/.local/share/my/bin/hypr-sho
 ---- SCREENSHOTS -----------------
 ----------------------------------
 
-hl.bind(MAIN_MOD .. " + Print",         hl.dsp.exec_cmd("screenshot"),      { description = " Screenshot (fullscreen)" })
-hl.bind(MAIN_MOD .. " + SHIFT + Print", hl.dsp.exec_cmd("screenshot area"), { description = " Screenshot (region select)" })
+hl.bind(MAIN_MOD .. " + Print",         hl.dsp.exec_cmd("screenshot"),      { locked=true, description = " Screenshot (fullscreen)" })
+hl.bind(MAIN_MOD .. " + SHIFT + Print", hl.dsp.exec_cmd("screenshot area"), { locked=true, description = " Screenshot (region select)" })
 
 ----------------------------------
 ---- WINDOWS ---------------------
