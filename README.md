@@ -78,10 +78,11 @@ A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration 
 | `obsidian` | Notes |
 | `playerctl` | Media key control |
 | `jq` | JSON parsing (used by keybind scripts) |
-| `awww` | Wallpaper daemon |
+| `swww` | Wallpaper daemon |
 | `cliphist` | Clipboard history |
 | `wl-clipboard` | Wayland clipboard (`wl-paste`) |
-| `polkit-gnome` | Authentication agent |
+| `imagemagick` | Image processing (wallpaper + screenshots) |
+| `hyprpolkitagent` | Authentication agent |
 | `gnome-keyring` | Secrets manager |
 
 ## Optional Dependancies
