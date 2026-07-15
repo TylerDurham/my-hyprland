@@ -16,8 +16,7 @@
 My [Hyprland](https://hyprland.org/) desktop configuration recently updated to take advantage of 
 Hyprland 0.55's [Lua configuration](https://wiki.hypr.land/Configuring/Start). 
 
-This started out as my minimal extra configuration for the wonderful Omarchy, but when I moved to NixOs, I had to build expand.
----
+This started out as my minimal extra configuration for the wonderful [Omarchy](https://omarchy.org), but when I moved to NixOs, I had to expand a bit.
 
 <div align="center">***Terminal running btop***</div>
 <div align="center">
