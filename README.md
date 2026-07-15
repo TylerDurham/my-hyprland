@@ -18,14 +18,13 @@ A modular, theme-driven [Hyprland](https://hyprland.org/) desktop configuration 
 
 ---
 
-***Terminal running btop***
-
+<div align="center">***Terminal running btop***</div>
 <div align="center">
   <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/terminal-btop.png?raw=true" width="600"/>
 </div>
 
-***Hyperlock Screen***
 
+<div align="center">***Hyperlock Screen***</div>
 <div align="center">
   <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/hyprlock.png?raw=true" width="600"/>
 </div>
