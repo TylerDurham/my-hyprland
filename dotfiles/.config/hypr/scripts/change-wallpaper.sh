@@ -1,51 +1,37 @@
 #!/usr/bin/env bash
 
-OUTPUT=""
+# Load libs
+source "$MY_LIB_DIR/bash/require.sh" logger
+
+set -eoEu pipefail
+
+# Collect stderr from the helpers here so diagnostics never pollute the
+# captured wallpaper path (that mixing is what produced the bogus
+# "Image 'magick:' does not exist" error) but are still available for
+# the failure notification below.
+ERR_LOG=$(mktemp)
 
 on-exit() {
-
-  if (( $? > 0 )); then
-    msg="An error has occured while changing the wallpaper: \n$OUTPUT"
-    notify-send -i dialog-warning "Error!" "$msg"
+  local rc=$?
+  if (( rc > 0 )); then
+    notify-send -i dialog-warning "Error!" \
+      "An error has occured while changing the wallpaper:\n$(cat "$ERR_LOG")"
   fi
-}
-
-cache-thumbnail() {
-  # Get the thumbnail for the selected wallpaper
-  OUTPUT=$(sys-cache-thumbnail -i $1)
-  echo "$OUTPUT" 
-}
-
-select-wallpaper() {
-  # Get a wallpaper
-  OUTPUT=$(hypr-select-wallpaper -d "$MY_WALLPAPER_DIR" 2>&1)
-  echo "$OUTPUT"
-}
-
-set-wallpaper() {
-  OUTPUT=$(hypr-set-wallpaper -i "$1" 2>&1)
-  echo "$OUTPUT"
+  rm -f "$ERR_LOG"
 }
 
 trap on-exit EXIT
 
-# Load libs
-source $MY_LIB_DIR/bash/require.sh logger 
-
-set -eoEu pipefail
-
-wallpaper=$(select-wallpaper)
+# Prompt for a wallpaper. Only stdout (the chosen path) is captured.
+wallpaper=$(hypr-select-wallpaper -d "$MY_WALLPAPER_DIR" 2>>"$ERR_LOG")
 
 if [[ -z "$wallpaper" ]]; then
   warn "No wallpaper selected."
-  exit 
+  exit
 fi
 
-echo $(set-wallpaper $wallpaper)
+hypr-set-wallpaper -i "$wallpaper" 2>>"$ERR_LOG"
 
-thumbnail=$(cache-thumbnail "$wallpaper")
+thumbnail=$(sys-cache-thumbnail -i "$wallpaper" 2>>"$ERR_LOG")
 
-notify-send -i $thumbnail "Success!" "Wallpaper changed to '$thumbnail'"
-
-
-
+notify-send -i "$thumbnail" "Success!" "Wallpaper changed to '$(basename "$wallpaper")'"
