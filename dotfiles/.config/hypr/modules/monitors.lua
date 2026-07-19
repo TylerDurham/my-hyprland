@@ -71,13 +71,23 @@ if M.config ~= nil then
 	end
 end
 
+-- The built-in panel's output name varies by machine (eDP-1, eDP-2, ...), so
+-- resolve it at load time from the live monitor list rather than hardcoding it.
+-- This only works while the panel is active; that's the normal case at startup.
+do
+	local b = M.builtin()
+	if b ~= nil then
+		M.config.builtin.name = b.name
+	end
+end
+
 M.disable_builtin = function()
-	hl.exec_cmd("hyprctl keyword monitor " .. M.config.builtin.name .. ",disable")
+	hl.monitor({ output = M.config.builtin.name, disabled = true })
 end
 
 M.enable_builtin = function()
 	local cfg = M.config.builtin
-	hl.exec_cmd("hyprctl keyword monitor " .. cfg.name .. ",preferred,auto," .. cfg.scale)
+	hl.monitor({ output = cfg.name, mode = "preferred", position = "auto", scale = cfg.scale, disabled = false })
 end
 
 M.monitor_status = function()

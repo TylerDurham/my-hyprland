@@ -17,6 +17,7 @@ local BROWSER     = g.programs.BROWSER
 local NOTES       = g.programs.NOTES
 
 local monitors = require("modules.monitors")
+local layouts = require("modules.layouts")
 
 ----------------------------------
 ---- APPLICATIONS ----------------
@@ -52,6 +53,13 @@ end, { description = "󰒭 Cycle to Next Window" })
 hl.bind(MAIN_MOD .. " + H", function()
 	hl.dispatch(hl.dsp.window.cycle_next({ "e-1", "scrolling" }))
 end, { description = "󰒮 Cycle to Previous Window" })
+
+----------------------------------
+---- LAYOUTS ---------------------
+----------------------------------
+
+-- Cycle scrolling -> dwindle -> master -> scrolling
+hl.bind(MAIN_MOD .. " + SHIFT + Space", layouts.cycle, { description = "󰕰 Cycle Window Layout" })
 
 ----------------------------------
 ---- WORKSPACES ------------------

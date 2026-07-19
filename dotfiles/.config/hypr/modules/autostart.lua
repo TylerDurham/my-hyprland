@@ -22,4 +22,5 @@ hl.on("hyprland.start", function()
   hl.exec_cmd("wl-paste --type text --watch cliphist store")
   hl.exec_cmd"~/.config/hypr/scripts/check-theme.sh"
   hl.exec_cmd("awww img ~/.config/my/background")
+  hl.exec_cmd("blueman-applet")
 end)
