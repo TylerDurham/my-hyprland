@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 $HOME/.local/share/my/bin/hypr-get-keybinds | rofi -dmenu \
   -i \
   -p "Hyprland Keybinds" \
