@@ -12,7 +12,7 @@ hl.config({
     border_size = 3,
 
     col = {
-      active_border = { colors = { theme.rgba("accent1", "aa"), theme.rgba("background", "aa") }, angle = 25 },
+      active_border = { colors = { theme.rgba("active_border", "aa"), theme.rgba("background", "aa") }, angle = 25 },
       inactive_border = theme.rgba("background", "ee"),
     },
 
