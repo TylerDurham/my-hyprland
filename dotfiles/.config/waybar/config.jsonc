@@ -1,5 +1,8 @@
 {
-  "height": 35,
+  // Matches what the modules actually require: the 10px top margin on
+  // .modules-* plus #bluetooth's 10px vertical margin and the 14px text.
+  // Setting this lower does nothing — waybar clamps up and warns.
+  "height": 50,
   "layer": "top",
   "modules-left": [
     "custom/launcher",
@@ -8,10 +11,10 @@
     "clock"
   ],
   "modules-center": [
-    "hyprland/window"
+    "hyprland/window",
+    "tray"
   ],
   "modules-right": [
-    "tray",
     "battery",
     "pulseaudio",
     "idle_inhibitor",
