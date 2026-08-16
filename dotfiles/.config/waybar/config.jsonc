@@ -16,7 +16,7 @@
   ],
   "modules-right": [
     "battery",
-    "pulseaudio",
+    "custom/audio",
     "idle_inhibitor",
     "bluetooth",
     "network",
@@ -112,17 +112,17 @@
     }
   },
 
-"pulseaudio": {
-    "format": "{icon}",
-    "format-bluetooth": "{icon} {volume}%",
-    "format-muted": " Muted",
-    "format-icons": {
-      "headphone": "",
-      "hands-free": "",
-      "headset": "",
-      "default": ["", "", ""]
-    },
-    "scroll-step": 5,
+  // Replaces the built-in pulseaudio module. That module cannot express
+  // "music is playing" — playback is MPRIS state, not sink state — and a
+  // built-in module's CSS classes cannot be driven from outside. The script
+  // reports the same icon set plus a playing/idle/muted class.
+  // exec-on-event (default) re-runs it on scroll, so volume feels instant.
+  "custom/audio": {
+    "exec": "~/.config/waybar/scripts/waybar-audio",
+    "return-type": "json",
+    "interval": 1,
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
     "on-click": "pavucontrol",
     "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
   },
@@ -141,6 +141,6 @@
   },
 
   "tray": {
-    "spacing": 10
+    "spacing": 20
   }
 }

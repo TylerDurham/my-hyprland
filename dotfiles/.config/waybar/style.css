@@ -65,7 +65,7 @@ window#waybar > box {
 #idle_inhibitor,
 #network,
 #power-profiles-daemon,
-#pulseaudio
+#custom-audio
 {
   margin: 1px 8px;
   min-width: 20px;
@@ -117,7 +117,16 @@ window#waybar > box {
   background-color: @green;
 }
 
-/* margin and min-width both come from the shared icon rule above. */
+/* Blue while any MPRIS player is playing, dimmed otherwise. The class comes
+   from waybar-audio; margin and min-width come from the shared icon rule. */
+#custom-audio {
+  color: @text3;
+  transition: color 0.3s ease-in-out;
+}
+
+#custom-audio.playing {
+  color: @blue;
+}
 
 #idle_inhibitor.activated {
   animation: pulse 3s ease-in-out infinite;
