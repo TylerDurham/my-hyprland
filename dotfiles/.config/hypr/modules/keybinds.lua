@@ -102,6 +102,11 @@ hl.bind(MAIN_MOD .. " + SHIFT + S", hl.dsp.exec_cmd("rofi-launch-module ~/.confi
 hl.bind(MAIN_MOD .. " + SHIFT + N", hl.dsp.exec_cmd("~/.local/bin/hypr-toggle-nightlight"),                  { description = "󰖔 Toggle Nightlight" })
 hl.bind(MAIN_MOD .. " + SHIFT + W", hl.dsp.exec_cmd("~/.config/hypr/scripts/change-wallpaper.sh"),           { description = " Change Wallpaper" })
 
+-- Cycle the wallpapers bundled with the active theme
+hl.bind(MAIN_MOD .. " + W",         hl.dsp.exec_cmd("hypr-cycle-wallpaper"),    { description = "󰒭 Next Wallpaper" })
+hl.bind(MAIN_MOD .. " + CTRL + W",  hl.dsp.exec_cmd("hypr-cycle-wallpaper -p"), { description = "󰒮 Previous Wallpaper" })
+hl.bind(MAIN_MOD .. " + ALT + W",   hl.dsp.exec_cmd("hypr-cycle-wallpaper -r"), { description = "󰒟 Random Wallpaper" })
+
 -- Monitor diagnostics
 hl.bind("SUPER + CTRL + SHIFT + M", monitors.monitor_status, { description = "󰍺 Show Monitor Status" })
 
