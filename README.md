@@ -32,7 +32,7 @@ This started out as my minimal extra configuration for the wonderful [Omarchy](h
 ## Features
 
 - **Lua-based modular config** — each concern (keybinds, monitors, look & feel, windows, workspaces) lives in its own file under `.config/hypr/modules/`
-- **6 complete themes** — Lovely Day, Hackerman, Catppuccin, Matte Black, Osaka Jade, Everforest — each with matched colors for Waybar, Rofi, VSCode, Neovim, and more
+- **7 complete themes** — Lovely Day, Catppuccin Mocha, Hackerman, Catppuccin, Matte Black, Osaka Jade, Everforest — each with matched colors for Waybar, Rofi, VSCode, Neovim, and more
 - **Searchable keybinds** — press `SUPER + K` to fuzzy-search every keybind in Rofi
 - **Dual-monitor workspace layout** — workspaces 1–5 on the right monitor, 9–10 on the left
 - **Touchpad gestures** — 3-finger swipe to scroll windows or switch workspaces, 4-finger pinch to fullscreen
@@ -50,6 +50,7 @@ This started out as my minimal extra configuration for the wonderful [Omarchy](h
 | Theme | Preview |
 |-------|---------|
 | Lovely Day | `.local/share/my/themes/lovely-day/backgrounds/` |
+| Catppuccin Mocha | `.local/share/my/themes/catppuccin-mocha/backgrounds/` |
 | Hackerman | `.local/share/my/themes/hackerman/backgrounds/` |
 | Catppuccin | `.local/share/my/themes/catppuccin/backgrounds/` |
 | Matte Black | `.local/share/my/themes/matte-black/backgrounds/` |
@@ -139,7 +140,7 @@ export MY_LIB_DIR="$HOME/.local/share/my/lib"
 **5. Set an active theme**
 
 ```bash
-hypr-set-current-theme lovely-day   # or hackerman, catppuccin, matte-black, osaka-jade, everforest
+hypr-set-current-theme lovely-day   # or catppuccin-mocha, hackerman, catppuccin, matte-black, osaka-jade, everforest
 ```
 
 **6. Install web apps (optional)**
@@ -233,14 +234,20 @@ Themes live under `.local/share/my/themes/`. Each theme contains:
 ```
 theme-name/
 ├── backgrounds/       # Wallpaper variants
-├── colors.toml        # Color palette (accent, background, foreground, …)
+├── @palette.toml      # Color palette (accent1/2, background, surfaces, …)
 ├── icons.theme        # Icon set
 ├── btop.theme         # btop system monitor
 ├── neovim.lua         # Neovim colorscheme
 ├── vscode.json        # VS Code theme
-├── waybar.css         # Waybar stylesheet
-└── rofi.rasi          # Rofi stylesheet (where applicable)
+├── waybar.css         # Waybar stylesheet (also read by SwayOSD)
+├── rofi.rasi          # Rofi stylesheet
+├── hyprland.conf      # Color vars sourced by hyprlock
+└── nmtui.colors       # nmtui palette (via NEWT_COLORS_FILE)
 ```
+
+Older themes use a flat `colors.toml` instead of `@palette.toml`. The fuller themes
+(`lovely-day`, `catppuccin-mocha`) also ship stylesheets for GTK, Kitty, Ghostty,
+Alacritty, Zed, Zellij, Mako, Wofi, Walker, Warp, Chromium, and Vencord.
 
 **Switch themes at runtime:**
 
