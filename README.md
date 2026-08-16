@@ -32,7 +32,7 @@ This started out as my minimal extra configuration for the wonderful [Omarchy](h
 ## Features
 
 - **Lua-based modular config** — each concern (keybinds, monitors, look & feel, windows, workspaces) lives in its own file under `.config/hypr/modules/`
-- **6 complete themes** — Lovely Day, Catppuccin Mocha, Hackerman, Matte Black, Osaka Jade, Everforest — each with matched colors for Waybar, Rofi, VSCode, Neovim, and more
+- **5 complete themes** — Lovely Day, Catppuccin Mocha, Matte Black, Osaka Jade, Everforest — each with matched colors for Waybar, Rofi, VSCode, Neovim, and more
 - **Searchable keybinds** — press `SUPER + K` to fuzzy-search every keybind in Rofi
 - **Dual-monitor workspace layout** — workspaces 1–5 on the right monitor, 9–10 on the left
 - **Touchpad gestures** — 3-finger swipe to scroll windows or switch workspaces, 4-finger pinch to fullscreen
@@ -51,7 +51,6 @@ This started out as my minimal extra configuration for the wonderful [Omarchy](h
 |-------|---------|
 | Lovely Day | `.local/share/my/themes/lovely-day/backgrounds/` |
 | Catppuccin Mocha | `.local/share/my/themes/catppuccin-mocha/backgrounds/` |
-| Hackerman | `.local/share/my/themes/hackerman/backgrounds/` |
 | Matte Black | `.local/share/my/themes/matte-black/backgrounds/` |
 | Osaka Jade | `.local/share/my/themes/osaka-jade/backgrounds/` |
 | Everforest | `.local/share/my/themes/everforest/backgrounds/` |
@@ -139,7 +138,8 @@ export MY_LIB_DIR="$HOME/.local/share/my/lib"
 **5. Set an active theme**
 
 ```bash
-hypr-set-current-theme lovely-day   # or catppuccin-mocha, hackerman, matte-black, osaka-jade, everforest
+hypr-set-current-theme lovely-day   # or catppuccin-mocha, matte-black, osaka-jade, everforest
+hypr-set-current-theme              # or omit the name to pick one from an fzf menu
 ```
 
 **6. Install web apps (optional)**
@@ -250,14 +250,15 @@ theme-name/
 └── nmtui.colors       # nmtui palette (via NEWT_COLORS_FILE)
 ```
 
-Older themes use a flat `colors.toml` instead of `@palette.toml`. The fuller themes
-(`lovely-day`, `catppuccin-mocha`) also ship stylesheets for GTK, Kitty, Ghostty,
-Alacritty, Zed, Zellij, Mako, Wofi, Walker, Warp, Chromium, and Vencord.
+Every theme also ships stylesheets for GTK, Kitty, Ghostty, Alacritty, Zed, Zellij,
+Mako, Wofi, Walker, Warp, Chromium, and Vencord. Some still carry a legacy flat
+`colors.toml` alongside `@palette.toml`; nothing reads it except the fallback in
+`theme.lua`.
 
 **Switch themes at runtime:**
 
 ```bash
-hypr-set-current-theme <theme-name>
+hypr-set-current-theme <theme-name>   # or run it with no arguments to pick from an fzf menu
 ```
 
 This updates the wallpaper and color symlinks, restarts Waybar and SwayOSD, reloads
