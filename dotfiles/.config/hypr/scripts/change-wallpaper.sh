@@ -23,7 +23,7 @@ on-exit() {
 trap on-exit EXIT
 
 # Prompt for a wallpaper. Only stdout (the chosen path) is captured.
-wallpaper=$(hypr-select-wallpaper -d "$MY_WALLPAPER_DIR" 2>>"$ERR_LOG")
+wallpaper=$(hypr-select-wallpaper -d "$HOME/.config/my/theme/backgrounds" 2>>"$ERR_LOG")
 
 if [[ -z "$wallpaper" ]]; then
   warn "No wallpaper selected."
