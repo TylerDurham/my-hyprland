@@ -21,8 +21,7 @@ if [[ $? > 0 ]]; then
   [[ -e "${images[0]}" ]] && BACKGROUND="${images[0]}"
 fi
 
-# TODO: Need to figure out what SWWW can do. 
-awww img $BACKGROUND
+hypr-set-wallpaper -i $BACKGROUND
 
 # Blow away current symlink and replace with new one
 rm "$MY_CURRENT_THEME_DIR"

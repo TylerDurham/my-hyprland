@@ -37,7 +37,7 @@ if [ -n "$IMAGE" ]; then
   [[ -f "$IMAGE" || -L "$IMAGE" ]] || fatal "Image '$IMAGE' does not exist on filesystem!"
 
   link="$HOME/.config/my/background"
-  ln -sf "$IMAGE" "$HOME/.config/my/background"
+  ln -sf "$IMAGE" "$link"
 
   awww img $link --transition-fps 60 --transition-step 255 --transition-type center
 
