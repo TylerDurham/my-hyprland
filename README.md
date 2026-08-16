@@ -178,6 +178,8 @@ Hyprland
 
 | Keybind | Action |
 |---------|--------|
+| `SUPER + A` | Toggle notification center (swaync) |
+| `SUPER + SHIFT + L` | Lock screen |
 | `SUPER + SHIFT + N` | Toggle night light |
 | `SUPER + SHIFT + S` | Open system control menu (lock, suspend, logout, reboot, shutdown) |
 | `SUPER + SHIFT + W` | Select and set wallpaper |
