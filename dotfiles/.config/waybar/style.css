@@ -71,8 +71,20 @@ window#waybar > box {
   min-width: 20px;
 }
 
-#battery.charging {
+/* Capacity states from the battery module's "states" config: 80-100 good,
+   10-79 warning, 0-9 critical. These come after .charging deliberately —
+   a state class is always present, so capacity drives the colour and
+   charging stays visible through its own icon set instead. */
+#battery.good {
   color: @green;
+}
+
+#battery.warning {
+  color: @orange;
+}
+
+#battery.critical {
+  color: @red;
 }
 
 #tray {
