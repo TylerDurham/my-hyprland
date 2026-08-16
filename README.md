@@ -32,7 +32,7 @@ This started out as my minimal extra configuration for the wonderful [Omarchy](h
 ## Features
 
 - **Lua-based modular config** — each concern (keybinds, monitors, look & feel, windows, workspaces) lives in its own file under `.config/hypr/modules/`
-- **7 complete themes** — Lovely Day, Catppuccin Mocha, Hackerman, Catppuccin, Matte Black, Osaka Jade, Everforest — each with matched colors for Waybar, Rofi, VSCode, Neovim, and more
+- **6 complete themes** — Lovely Day, Catppuccin Mocha, Hackerman, Matte Black, Osaka Jade, Everforest — each with matched colors for Waybar, Rofi, VSCode, Neovim, and more
 - **Searchable keybinds** — press `SUPER + K` to fuzzy-search every keybind in Rofi
 - **Dual-monitor workspace layout** — workspaces 1–5 on the right monitor, 9–10 on the left
 - **Touchpad gestures** — 3-finger swipe to scroll windows or switch workspaces, 4-finger pinch to fullscreen
@@ -52,7 +52,6 @@ This started out as my minimal extra configuration for the wonderful [Omarchy](h
 | Lovely Day | `.local/share/my/themes/lovely-day/backgrounds/` |
 | Catppuccin Mocha | `.local/share/my/themes/catppuccin-mocha/backgrounds/` |
 | Hackerman | `.local/share/my/themes/hackerman/backgrounds/` |
-| Catppuccin | `.local/share/my/themes/catppuccin/backgrounds/` |
 | Matte Black | `.local/share/my/themes/matte-black/backgrounds/` |
 | Osaka Jade | `.local/share/my/themes/osaka-jade/backgrounds/` |
 | Everforest | `.local/share/my/themes/everforest/backgrounds/` |
@@ -140,7 +139,7 @@ export MY_LIB_DIR="$HOME/.local/share/my/lib"
 **5. Set an active theme**
 
 ```bash
-hypr-set-current-theme lovely-day   # or catppuccin-mocha, hackerman, catppuccin, matte-black, osaka-jade, everforest
+hypr-set-current-theme lovely-day   # or catppuccin-mocha, hackerman, matte-black, osaka-jade, everforest
 ```
 
 **6. Install web apps (optional)**
@@ -182,6 +181,9 @@ Hyprland
 | `SUPER + SHIFT + N` | Toggle night light |
 | `SUPER + SHIFT + S` | Open system control menu (lock, suspend, logout, reboot, shutdown) |
 | `SUPER + SHIFT + W` | Select and set wallpaper |
+| `SUPER + W` | Next wallpaper in the active theme |
+| `SUPER + CTRL + W` | Previous wallpaper in the active theme |
+| `SUPER + ALT + W` | Random wallpaper from the active theme |
 
 ### Workspace Navigation
 
@@ -241,7 +243,8 @@ theme-name/
 ├── vscode.json        # VS Code theme
 ├── waybar.css         # Waybar stylesheet (also read by SwayOSD)
 ├── rofi.rasi          # Rofi stylesheet
-├── hyprland.conf      # Color vars sourced by hyprlock
+├── hyprland.conf      # Color vars — sourced by hyprlock, parsed by looknfeel.lua
+├── ghostty.conf       # Ghostty palette (included via ~/.config/my/theme)
 └── nmtui.colors       # nmtui palette (via NEWT_COLORS_FILE)
 ```
 
@@ -255,7 +258,16 @@ Alacritty, Zed, Zellij, Mako, Wofi, Walker, Warp, Chromium, and Vencord.
 hypr-set-current-theme <theme-name>
 ```
 
-This updates the wallpaper, color symlinks, and restarts Waybar and SwayOSD automatically.
+This updates the wallpaper and color symlinks, restarts Waybar and SwayOSD, reloads
+Ghostty (SIGUSR2), and reloads Hyprland — which re-reads the palette, so window border
+colors follow the theme too.
+
+Hyprland's border colors are read at config-eval time by `modules/lib/theme.lua`, which
+looks for `hyprland.conf`, then `@palette.toml`, then `colors.toml` in the active theme,
+falling back to built-in defaults if none are present.
+
+**Cycle the active theme's wallpapers:** `SUPER + W` (next), `SUPER + CTRL + W`
+(previous), `SUPER + ALT + W` (random) — see `hypr-cycle-wallpaper --help`.
 
 ---
 

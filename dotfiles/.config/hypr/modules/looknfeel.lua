@@ -1,4 +1,9 @@
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
+
+-- Border colors come from the active theme (~/.config/my/theme). This is
+-- re-read on every `hyprctl reload`, which hypr-restart-theme already runs.
+local theme = require("modules.lib.theme")
+
 hl.config({
   general = {
     gaps_in = 20,
@@ -7,8 +12,8 @@ hl.config({
     border_size = 3,
 
     col = {
-      active_border = { colors = { "rgba(FFCC00aa)", "rgba(0D1017aa)" }, angle = 25 },
-      inactive_border = "rgba(01070aee)",
+      active_border = { colors = { theme.rgba("accent1", "aa"), theme.rgba("background", "aa") }, angle = 25 },
+      inactive_border = theme.rgba("background", "ee"),
     },
 
     -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
