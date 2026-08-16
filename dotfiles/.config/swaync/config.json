@@ -80,8 +80,8 @@
         },
         {
           "label": "",
-          "command": "~/.local/share/tylerd/bin/set-wallpaper",
-          "tooltip": "Files"
+          "command": "~/.config/hypr/scripts/change-wallpaper.sh",
+          "tooltip": "Wallpaper"
         },
         {
           "label": "",
@@ -90,7 +90,7 @@
         },
         {
           "label": "",
-          "command": "~/.local/share/tylerd/bin/omarchy-lock-screen",
+          "command": "~/.local/share/my/bin/hypr-lock",
           "tooltip": "Lock"
         },
         {
