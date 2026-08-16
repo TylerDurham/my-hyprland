@@ -3,4 +3,3 @@ Type=Application
 Name=NetworkManager Applet
 Exec=nm-applet
 Hidden=true
-EOF
