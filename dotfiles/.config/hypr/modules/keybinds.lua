@@ -44,6 +44,8 @@ hl.bind(MAIN_MOD .. " + SHIFT + Print", hl.dsp.exec_cmd("screenshot area"), { lo
 hl.bind(MAIN_MOD .. " + Q",            hl.dsp.window.close(),   { description = "󰅗 Close Current Window" })
 hl.bind(MAIN_MOD .. " + mouse:272",    hl.dsp.window.drag(),    { description = "󰇘 Drag Window" })
 hl.bind(MAIN_MOD .. " + SHIFT + mouse:272", hl.dsp.window.resize(), { description = "󰙕 Resize Window" })
+hl.bind(MAIN_MOD .. " + F", hl.dsp.window.fullscreen({ mode = 0 }), { description = "󰊓 Full Screen Window (Fill Window)"})
+hl.bind(MAIN_MOD .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = 1 }), { description = "󰊓 Full Screen Window (Fill Workspace)"})
 
 -- Cycle through non-empty windows
 hl.bind(MAIN_MOD .. " + L", function()
