@@ -4,7 +4,7 @@
 window {
   border-radius: 0;
   opacity: 0.97;
-  border: 2px solid @yellow;
+  border: 2px solid @accent1;
 
   background-color: @background;
 }

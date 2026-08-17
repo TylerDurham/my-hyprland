@@ -2,6 +2,7 @@
 
 hypr-restart-waybar
 hypr-restart-swayosd
+hypr-restart-swaync
 
 # Ghostty includes ~/.config/my/theme/ghostty.conf, so it only needs to
 # re-read its config. SIGUSR2 is its documented reload signal; no match
