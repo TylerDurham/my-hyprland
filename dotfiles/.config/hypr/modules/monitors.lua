@@ -14,10 +14,10 @@ local M = {}
 
 M.config = {
 	right = {
-		output = "desc:LG Electronics LG ULTRAGEAR 404MXCR52499",
-		mode = "2560x1440@120.0",
+		output = "desc:BNQ BenQ RD280UG EMF6T00620087",
+		mode = "3840x2160@120.0",
 		position = "1924x0",
-		scale = 1.33,
+		scale = 2,
 	},
 	left = {
 		output = "desc:Dell Inc. DELL S2725QS 7DCMT84",
