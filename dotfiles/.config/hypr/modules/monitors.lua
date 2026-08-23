@@ -15,7 +15,7 @@ local M = {}
 M.config = {
 	right = {
 		output = "desc:BNQ BenQ RD280UG EMF6T00620087",
-		mode = "3840x2160@120.0",
+		mode = "3840x2560@120.0",
 		position = "1924x0",
 		scale = 2,
 	},
@@ -27,7 +27,7 @@ M.config = {
 	},
 	builtin = {
 		name = "eDP-1",
-		scale = 2,
+		scale = 1,
 	},
 }
 
