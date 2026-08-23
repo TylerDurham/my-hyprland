@@ -1,10 +1,4 @@
 
-
-
-
-
-
-
 local function makeConst(t)
 	return setmetatable({}, {
 		__index = t,
