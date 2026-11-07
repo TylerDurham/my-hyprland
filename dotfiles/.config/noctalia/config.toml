@@ -4,8 +4,8 @@ ui_scale = 1.0
 # Minimal: thin, flush, square bar with only the essentials.
 [bar.default]
 start = [ "launcher", "workspaces" ]
-center = [ "clock" ]
-end = [ "media", "tray", "notifications", "network", "volume", "session" ]
+center = [ "clock", "tray"]
+end = [ "media", "notifications", "network", "volume", "session" ]
 concave_edge_corners = false
 margin_edge = 0
 margin_ends = 0
@@ -85,7 +85,7 @@ community_palette = "Kanagawa Dragon"
 
 [widget.clock]
 color = "secondary"
-format = "{:%H:%M %A %m/%d/%y}"
+format = "{:%I:%M %p %A %m/%d/%y}"
 
 [widget.launcher]
 color = "secondary"
@@ -96,6 +96,9 @@ title_scroll = "on_hover"
 
 [widget.network]
 color = "secondary"
+peek = true
+vpn_status = "both"
+show_label = false
 
 [widget.notifications]
 color = "secondary"

@@ -13,8 +13,8 @@ hl.config({
     decoration = {
         dim_special = 0.3,
         rounding = 6,
-        active_opacity = 1,
-        inactive_opacity = 1,
+        active_opacity = 0.9,
+        inactive_opacity = 0.5,
         fullscreen_opacity = 1,
         blur = {
             size = 5,
