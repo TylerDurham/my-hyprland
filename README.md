@@ -23,7 +23,7 @@ handles the bar, launcher, notifications, OSD, lock screen, clipboard, wallpaper
 and theming. The earlier Waybar / Rofi / SwayNC setup is gone.
 
 <div align="center">
-  <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/noctalia-launcher.png?raw=true" width="600"/>
+  <img src="https://github.com/TylerDurham/my-hyprland/blob/noctalia/media/noctalia-launcher.png?raw=true" width="600"/>
 </div>
 
 ## Features
