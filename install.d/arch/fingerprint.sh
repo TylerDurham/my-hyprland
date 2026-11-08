@@ -24,6 +24,9 @@
 # GLOBALS
 # -------------------------------------------------------------------------------------------------
 
+# Edits PAM and enrolls fingers, so only run when picked via 'install.sh --select'.
+MODULE_OPT_IN=1
+
 readonly CWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)" # Current directory (relative to this file)
 readonly PKGS=(fprintd)                                      # Packages providing the fprintd stack
 readonly DEFAULT_FINGER="right-index-finger"                 # Enrolled unless FINGERS says otherwise
@@ -100,8 +103,8 @@ on_install() {
   verify_pam_module
 
   warn "About to edit PAM. Keep this shell open and test in a second terminal;"
-  warn "revert with './install.sh -u -m fingerprint' if a prompt stops accepting"
-  warn "your password."
+  warn "revert with './install.sh --remove --select' (pick fingerprint.sh) if a"
+  warn "prompt stops accepting your password."
 
   for svc in "${PAM_SERVICES[@]}"; do
     pam_wire "$svc"

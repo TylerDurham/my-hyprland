@@ -2,9 +2,9 @@
 
 SELECT=
 ACTION=install
-readonly export REPO_ROOT=$(git rev-parse --show-toplevel)
-readonly export INSTALL_ROOT="$REPO_ROOT/install.d/arch"
-readonly export PREFIX=my
+declare -rx REPO_ROOT="$(git rev-parse --show-toplevel)"
+declare -rx INSTALL_ROOT="$REPO_ROOT/install.d/arch"
+declare -rx PREFIX=my
 
 # Prime the sudo timestamp up front so the build does not stall on a
 # password prompt halfway through.
@@ -12,7 +12,7 @@ sudo -v
 
 is-arch() {
   case "$1" in 
-    arch|cachyos) return 0 ;;
+    arch|cachyos|endeavour|manjaro) return 0 ;;
     *) return 1 ;;
   esac
 }
@@ -54,6 +54,9 @@ fatal() {
   error "$@"
   exit 1
 }
+
+# Modules use 'die'; keep it as an alias so their error paths actually exit.
+die() { fatal "$@"; }
 
 indent() { sed "s/^/$(printf '%*s' "${1:-4}" '')/" >&2; }
 
@@ -98,7 +101,19 @@ if [[ "$ACTION" == "uninstall" ]]; then
 fi
 
 for module in "${modules[@]}"; do
+    # Clear the previous module's hooks and flags so a module that omits a
+    # hook does not inherit one.
+    unset -f on_init on_install on_uninstall on_completed
+    unset MODULE_OPT_IN
+
     source "$module"
+
+    # Opt-in modules (MODULE_OPT_IN=1, e.g. fingerprint.sh, which edits PAM)
+    # only run when picked with --select, never on a full install or removal.
+    if [[ "${MODULE_OPT_IN:-0}" -eq 1 && -z "$SELECT" ]]; then
+      info "skipping opt-in module '$(basename "$module")'; run with --select to include it"
+      continue
+    fi
 
     # Call 'on_init' hook if it exists
     if declare -F "on_init" >/dev/null; then
@@ -112,7 +127,7 @@ for module in "${modules[@]}"; do
       warn "module '$module' does not implement '$hook'()! skipping..."
     fi
     
-    # Call 'on_init' hook if it exists
+    # Call 'on_completed' hook if it exists
     if declare -F "on_completed" >/dev/null; then
       on_completed
     fi
