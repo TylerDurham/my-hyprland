@@ -7,8 +7,8 @@
          |___/                 |___/|_|                             
 ```
 <div align="center">
-  <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/wayland.png?raw=true" height="200"/>
-  <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/hyprland.png?raw=true" height="200"/>
+  <img src="media/wayland.png" height="200"/>
+  <img src="media/hyprland.png" height="200"/>
 </div>
 
 ---
@@ -23,7 +23,7 @@ handles the bar, launcher, notifications, OSD, lock screen, clipboard, wallpaper
 and theming. The earlier Waybar / Rofi / SwayNC setup is gone.
 
 <div align="center">
-  <img src="https://github.com/TylerDurham/my-hyprland/blob/noctalia/media/noctalia-launcher.png?raw=true" width="600"/>
+  <img src="media/noctalia-launcher.png" width="600"/>
 </div>
 
 ## Features
