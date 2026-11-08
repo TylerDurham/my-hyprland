@@ -1,6 +1,5 @@
 PREFIX=my
 PROJECT_ROOT_DIR=$(git rev-parse --show-toplevel)
-MY_INSTALL_DIR=$(git rev-parse --show-toplevel)
 
 init() {
   # Libs
@@ -23,6 +22,6 @@ init() {
   done
 }
 
-export MY_THEME_DIR="$PROJECT_ROOT_DIR/dotfiles/.local/share/$PREFIX/themes"
-export MY_CURRENT_THEME_DIR="$MY_CONFIG_DIR/current"
-export PATH="$MY_BIN_DIR:$PATH"
+# export MY_THEME_DIR="$PROJECT_ROOT_DIR/dotfiles/.local/share/$PREFIX/themes"
+# export MY_CURRENT_THEME_DIR="$MY_CONFIG_DIR/current"
+# export PATH="$MY_BIN_DIR:$PATH"

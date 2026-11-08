@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+
+SELECT=
+ACTION=install
+readonly export REPO_ROOT=$(git rev-parse --show-toplevel)
+readonly export INSTALL_ROOT="$REPO_ROOT/install.d/arch"
+readonly export PREFIX=my
+
+# Prime the sudo timestamp up front so the build does not stall on a
+# password prompt halfway through.
+sudo -v
+
+is-arch() {
+  case "$1" in 
+    arch|cachyos) return 0 ;;
+    *) return 1 ;;
+  esac
+}
+
+# ensure we are on arch linux
+OS=$(sys-get-os)
+if ! is-arch "$OS"; then
+    echo "$OS is not an arch derivative! exiting"
+    exit 1
+fi
+
+check-command() {
+    command -v "$1" &>/dev/null && return 0 || return 1
+}
+
+check-package() {
+    yay -Q "$1" &>/dev/null && return 0 || return 1
+}
+
+# console logging
+debug() {
+    echo -n "   "; gum log -l debug "$@" 
+}
+
+
+info() {
+    gum log -l info "$@"
+}
+
+warn() {
+    gum log -l warn "$@"
+}
+
+error() {
+  gum log -l error "$@"
+}
+
+fatal() {
+  error "$@"
+  exit 1
+}
+
+indent() { sed "s/^/$(printf '%*s' "${1:-4}" '')/" >&2; }
+
+if ! check-command "gum"; then
+    echo "'gum' is used for pretty console logging. installing now..."
+    sudo pacman -Sy --noconfirm gum
+    clear
+    info "'gum' installed! that's more like it..."
+fi
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -r|--remove) ACTION=uninstall; shift ;;
+        -s|--select) SELECT=1; shift ;;
+        *) shift ;;
+    esac
+done
+
+# modules=(
+#     packages.sh
+#     yay.sh
+#     git.sh
+#     bash.sh
+#     zsh.sh
+#     stow.sh
+# )
+#
+if [[ -n "$SELECT" ]]; then 
+  # user wishes to select packages
+  prompt="Select modules for '$(basename $INSTALL_ROOT)':"
+  mapfile -t modules < <(sys-select-items -m "$INSTALL_ROOT/*.sh" -p "$prompt")
+else
+  mapfile -t modules < <(sys-list-items "$INSTALL_ROOT/*.sh")
+fi
+
+# Tear down in reverse order so later modules (e.g. stow) are undone before
+# the earlier ones they depend on (e.g. mkdirs).
+if [[ "$ACTION" == "uninstall" ]]; then
+  for (( i = 0, j = ${#modules[@]} - 1; i < j; i++, j-- )); do
+    tmp="${modules[i]}"; modules[i]="${modules[j]}"; modules[j]="$tmp"
+  done
+fi
+
+for module in "${modules[@]}"; do
+    source "$module"
+
+    # Call 'on_init' hook if it exists
+    if declare -F "on_init" >/dev/null; then
+      on_init
+    fi
+
+    hook="on_$ACTION"
+    if declare -f "$hook" >/dev/null; then
+      $hook 
+    else 
+      warn "module '$module' does not implement '$hook'()! skipping..."
+    fi
+    
+    # Call 'on_init' hook if it exists
+    if declare -F "on_completed" >/dev/null; then
+      on_completed
+    fi
+done
