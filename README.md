@@ -68,9 +68,9 @@ installer installs it itself.
 git clone https://github.com/TylerDurham/my-hyprland.git
 cd my-hyprland
 
-./install.sh              # run every module
-./install.sh --select     # choose which modules to run
-./install.sh --remove     # uninstall, in reverse order
+./install                  # run every module
+./install --select         # choose which modules to run
+./install --remove         # uninstall, in reverse order
 ```
 
 ### Modules (`install.d/arch/`)
@@ -82,6 +82,8 @@ cd my-hyprland
 | `plymouth.sh` | Themed boot splash from [adi1090x/plymouth-themes](https://github.com/adi1090x/plymouth-themes), mkinitcpio hook, silent-boot kernel params |
 | `stow.sh` | Symlink `dotfiles/` into `$HOME` with GNU stow |
 | `thunderbolt.sh` | Install `bolt` and enable `bolt.service` so Thunderbolt devices can be authorized |
+| `flatpaks.sh` | Install `flatpak`, add the Flathub remote and install the apps in `flatpaks.txt` |
+| `tty-font.sh` | Set the console font to Terminus (`ter-132b`) and rebuild the initramfs so the LUKS prompt uses it |
 | `fingerprint.sh` | **Opt-in.** Enroll fingerprints and add `pam_fprintd` to sudo and polkit. Only runs when picked with `--select` |
 
 Each module defines `on_init`, `on_install` and `on_uninstall` hooks, plus an
@@ -96,7 +98,8 @@ the current state before changing anything.
 | `FINGERS` | fingerprint | Fingers to enroll, e.g. `"right-index-finger left-thumb"` |
 | `ENROLL_ONLY=1` | fingerprint | Re-enroll fingers without touching PAM |
 | `WIRE_LOGIN=1` | fingerprint | Also wire up the SDDM greeter |
-| `NO_CONFIRM=1` | plymouth, thunderbolt | Skip pacman's confirmation prompt |
+| `SCOPE=user` | flatpaks | Install flatpaks per-user instead of system-wide |
+| `NO_CONFIRM=1` | plymouth, thunderbolt, flatpaks | Skip pacman's (and flatpak's) confirmation prompts |
 
 ### Web apps (optional)
 
@@ -192,7 +195,7 @@ Logos, Gitea, GitHub, Claude.ai, LitCharts) using `hypr-install-webapp`:
 
 ```
 .
-├── install.sh                    # OS detection → install.d/<os>/install
+├── install                       # OS detection → install.d/<os>/install
 ├── install-webapps.sh            # Optional web app desktop entries
 ├── install.d/
 │   └── arch/
