@@ -5,7 +5,7 @@ ui_scale = 1.0
 [bar.default]
 start = [ "launcher", "workspaces" ]
 center = [ "clock", "tray"]
-end = [ "media", "notifications", "network", "volume", "session" ]
+end = [ "battery", "airpods", "media", "notifications", "network", "volume", "session" ]
 concave_edge_corners = false
 margin_edge = 0
 margin_ends = 0
@@ -88,11 +88,17 @@ color = "secondary"
 format = "{:%I:%M %p %A %m/%d/%y}"
 
 [widget.launcher]
-color = "secondary"
+color = "primary"
+glyph = "menu-2"
 
 [widget.media]
 hide_when_no_media = true
 title_scroll = "on_hover"
+
+[widget.battery]
+type = "battery"
+display_mode = "graphic"
+device = "auto"
 
 [widget.network]
 color = "secondary"
@@ -132,9 +138,13 @@ color = "secondary"
 [widget.workspaces]
 active_pill_size = 2.5
 capsule = false
-inactive_pill_size = 1.0
+inactive_pill_size = 1.5
 pill_scale = 0.80
-show_labels = false
+show_labels = true
+colorize_icons = true
+focused_color = "primary"
+empty_color = "surface"
+occupied_color = "surface"
 
 [location]
 auto_locate = true

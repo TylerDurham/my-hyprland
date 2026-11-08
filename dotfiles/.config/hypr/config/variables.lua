@@ -1,8 +1,8 @@
 -- Hyprland default apps
 
 TERMINAL     = "kitty"
-FILE_MANAGER = "dolphin"
-BROWSER      = "firefox"
+FILE_MANAGER = "nautilus"
+BROWSER      = "brave"
 EDITOR       = "gnome-text-editor --new-window"
 CALCULATOR   = "gnome-calculator"
 
@@ -15,4 +15,4 @@ MONITOR3 = "desc:BNQ BenQ RD280UG EMF6T00620087"       -- BenQ (right)
 PRIMARY_MONITOR = MONITOR3
 
 -- Workspaces
-NUM_WPM = 3 -- Number of workspaces per monitor (Max 10)
+NUM_WPM = 10 -- Number of workspaces per monitor (Max 10)

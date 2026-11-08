@@ -34,22 +34,22 @@ hl.bind(mainMod .. " + SHIFT + Up",                   hl.dsp.window.move({ direc
 hl.bind(mainMod .. " + SHIFT + Right",                hl.dsp.window.move({ direction = "r" }))
 hl.bind(mainMod .. " + SHIFT + Left",                 hl.dsp.window.move({ direction = "l" }))
 hl.bind(mainMod .. " + SHIFT + Down",                 hl.dsp.window.move({ direction = "d" }))
-hl.bind(mainMod .. " + SHIFT + " .. digitCode(1),     hl.dsp.window.move({ monitor = MONITOR1 }))
-hl.bind(mainMod .. " + SHIFT + " .. digitCode(2),     hl.dsp.window.move({ monitor = MONITOR2 }))
-hl.bind(mainMod .. " + SHIFT + " .. digitCode(3),     hl.dsp.window.move({ monitor = MONITOR3 }))
+hl.bind(mainMod .. " + SHIFT + ALT + " .. digitCode(1), hl.dsp.window.move({ monitor = MONITOR1 }), { description = "Move window to laptop monitor" })
+hl.bind(mainMod .. " + SHIFT + ALT + " .. digitCode(2), hl.dsp.window.move({ monitor = MONITOR2 }), { description = "Move window to Dell monitor" })
+hl.bind(mainMod .. " + SHIFT + ALT + " .. digitCode(3), hl.dsp.window.move({ monitor = MONITOR3 }), { description = "Move window to BenQ monitor" })
 hl.bind(mainMod .. " + SHIFT + mouse_up",             hl.dsp.window.move({ monitor   = "-1" }))
 hl.bind(mainMod .. " + SHIFT + mouse_down",           hl.dsp.window.move({ monitor   = "+1" }))
 hl.bind(mainMod .. " + CONTROL + SHIFT + Right",      hl.dsp.window.move({ workspace = "m+1" }))
 hl.bind(mainMod .. " + CONTROL + SHIFT + Left",       hl.dsp.window.move({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CONTROL + SHIFT + mouse_up",   hl.dsp.window.move({ workspace = "m-1" }))
 hl.bind(mainMod .. " + CONTROL + SHIFT + mouse_down", hl.dsp.window.move({ workspace = "m+1" }))
+-- Move to workspace N and follow it / move silently (stay put)
 for i = 1, NUM_WPM do
     local key = i % 10
-    hl.bind(mainMod .. " + SHIFT + CONTROL + " .. digitCode(key), hl.dsp.window.move({ workspace = "m~" .. i }))
-end
-for i = 1, NUM_WPM do
-    local key = i % 10
-    hl.bind(mainMod .. " + SHIFT + ALT + " .. digitCode(key), hl.dsp.window.move({ workspace = "m~" .. i, follow = false }))
+    hl.bind(mainMod .. " + SHIFT + " .. digitCode(key),           hl.dsp.window.move({ workspace = i }),
+        { description = "Move window to workspace " .. i .. " and follow" })
+    hl.bind(mainMod .. " + SHIFT + CONTROL + " .. digitCode(key), hl.dsp.window.move({ workspace = i, follow = false }),
+        { description = "Move window to workspace " .. i .. " silently" })
 end
 
 -- Move & Resize with mouse
@@ -125,6 +125,9 @@ hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(noctCall .. "screenshot-fullscree
 -- Theming and Wallpaper
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(noctCall .. "panel-toggle wallpaper"))
 
+-- Keybinds cheat sheet
+hl.bind(mainMod .. " + K", hl.dsp.exec_cmd(noctCall .. "panel-toggle kenn/keybind-cheatsheet:cheatsheet"), { description = "Keybinds cheatsheet" })
+
 -- Clipboard
 hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(noctCall .. "panel-toggle clipboard"))
 
@@ -136,20 +139,22 @@ hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(noctCall .. "panel-toggle control-cen
 -------------------------------
 
 -- Focus on monitors
-hl.bind(mainMod .. " + " .. digitCode(1), hl.dsp.focus({ monitor = MONITOR1 }))
-hl.bind(mainMod .. " + " .. digitCode(2), hl.dsp.focus({ monitor = MONITOR2 }))
-hl.bind(mainMod .. " + " .. digitCode(3), hl.dsp.focus({ monitor = MONITOR3 }))
+hl.bind(mainMod .. " + ALT + " .. digitCode(1), hl.dsp.focus({ monitor = MONITOR1 }), { description = "Focus laptop monitor" })
+hl.bind(mainMod .. " + ALT + " .. digitCode(2), hl.dsp.focus({ monitor = MONITOR2 }), { description = "Focus Dell monitor" })
+hl.bind(mainMod .. " + ALT + " .. digitCode(3), hl.dsp.focus({ monitor = MONITOR3 }), { description = "Focus BenQ monitor" })
 
 -- Focus on workspace number
 -- Absolute
 for i = 1, NUM_WPM do
     local key = i % 10
-    hl.bind(mainMod .. " + ALT + " .. digitCode(key), hl.dsp.focus({ workspace = i }))
+    hl.bind(mainMod .. " + " .. digitCode(key), hl.dsp.focus({ workspace = i }),
+        { description = "Go to workspace " .. i })
 end
 -- Relative
 for i = 1, NUM_WPM do
     local key = i % 10
-    hl.bind(mainMod .. " + CONTROL + " .. digitCode(key), hl.dsp.focus({ workspace = "m~" .. i }))
+    hl.bind(mainMod .. " + CONTROL + " .. digitCode(key), hl.dsp.focus({ workspace = "m~" .. i }),
+        { description = "Go to workspace " .. i .. " on current monitor" })
 end
 
 -- Move to adjacent workspaces and next empty on a given monitor
