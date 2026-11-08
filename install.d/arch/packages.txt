@@ -1,2 +1,4 @@
-nautilus
 libappindicator
+mpv
+nautilus
+obsidian
