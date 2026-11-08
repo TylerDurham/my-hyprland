@@ -4,7 +4,7 @@ After=graphical-session.target bluetooth.target
 PartOf=graphical-session.target
 
 [Service]
-ExecStart=/usr/bin/librepods
+ExecStart=/usr/bin/librepods --hide
 Restart=on-failure
 RestartSec=3
 
