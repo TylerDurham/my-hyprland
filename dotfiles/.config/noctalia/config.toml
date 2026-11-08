@@ -34,9 +34,10 @@ settings_show_advanced = true
 
     [shell.screenshot]
     copy_to_clipboard = true
+    directory = "~/Pictures/Screenshots"
     pipe_command = "swash --stdin --name \"swash-$(date +'%Y-%m-%d_%H:%M:%S').png\""
     pipe_to_command = true
-    save_to_file = false
+    save_to_file = true
 
     [[shell.session.actions]]
     action = "lock"

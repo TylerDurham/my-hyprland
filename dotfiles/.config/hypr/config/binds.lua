@@ -120,7 +120,8 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(noctCall .. "brightness-down"),
 -- Screen Capture
 hl.bind(mainMod .. " + P",     hl.dsp.exec_cmd("hyprpicker -a -n"))
 hl.bind("Print",               hl.dsp.exec_cmd(noctCall .. "screenshot-region"))
-hl.bind(mainMod .. " + Print", hl.dsp.exec_cmd(noctCall .. "screenshot-fullscreen"))
+hl.bind(mainMod .. " + Print",         hl.dsp.exec_cmd(noctCall .. "screenshot-fullscreen"), { description = "Screenshot focused monitor" })
+hl.bind(mainMod .. " + SHIFT + Print", hl.dsp.exec_cmd(noctCall .. "screenshot-region"), { description = "Screenshot region" })
 
 -- Theming and Wallpaper
 hl.bind(mainMod .. " + SHIFT + W", hl.dsp.exec_cmd(noctCall .. "panel-toggle wallpaper"))
