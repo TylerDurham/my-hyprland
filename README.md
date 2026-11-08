@@ -9,268 +9,182 @@
 <div align="center">
   <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/wayland.png?raw=true" height="200"/>
   <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/hyprland.png?raw=true" height="200"/>
-</div> 
+</div>
 
 ---
 
-My [Hyprland](https://hyprland.org/) desktop configuration recently updated to take advantage of 
-Hyprland 0.55's [Lua configuration](https://wiki.hypr.land/Configuring/Start). 
+My [Hyprland](https://hyprland.org/) desktop, written in Hyprland's
+[Lua configuration](https://wiki.hypr.land/Configuring/Start) and running the
+[Noctalia](https://github.com/noctalia-dev/noctalia-shell) shell on CachyOS.
 
-This started out as my minimal extra configuration for the wonderful [Omarchy](https://omarchy.org), but when I moved to NixOs, I had to expand a bit.
+It started as a few extras on top of [Omarchy](https://omarchy.org), grew into a
+standalone setup on NixOS, and now builds on CachyOS's Hyprland config. Noctalia
+handles the bar, launcher, notifications, OSD, lock screen, clipboard, wallpaper
+and theming. The earlier Waybar / Rofi / SwayNC setup is gone.
 
-<div align="center">***Terminal running btop***</div>
 <div align="center">
   <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/terminal-btop.png?raw=true" width="600"/>
 </div>
 
-
-<div align="center">***Hyperlock Screen***</div>
-<div align="center">
-  <img src="https://github.com/TylerDurham/my-hyprland/blob/master/media/hyprlock.png?raw=true" width="600"/>
-</div>
-
 ## Features
 
-- **Lua-based modular config** — each concern (keybinds, monitors, look & feel, windows, workspaces) lives in its own file under `.config/hypr/modules/`
-- **5 complete themes** — Lovely Day, Catppuccin Mocha, Matte Black, Osaka Jade, Everforest — each with matched colors for Waybar, Rofi, VSCode, Neovim, and more
-- **Searchable keybinds** — press `SUPER + K` to fuzzy-search every keybind in Rofi
-- **Dual-monitor workspace layout** — workspaces 1–5 on the right monitor, 9–10 on the left
-- **Touchpad gestures** — 3-finger swipe to scroll windows or switch workspaces, 4-finger pinch to fullscreen
-- **Night light** — automatic warm color temperature at sunset via `hyprsunset` (toggle with `SUPER + SHIFT + N`)
-- **Interactive wallpaper picker** — browse and set wallpapers with thumbnail previews via Rofi (`SUPER + SHIFT + W`); supports recursive directory selection
-- **System control menu** — lock, suspend, logout, reboot, or shutdown from a Rofi icon grid (`SUPER + SHIFT + S`)
-- **OSD feedback** — volume, microphone, and brightness overlays via `swayosd`
-- **Auto-idle + lock** — brightness dims at 5 min, screen locks at 10 min, display off at 15 min
-- **Clipboard history** — persistent clipboard via `cliphist` + `wl-paste`
-
----
-
-## Screenshots
-
-| Theme | Preview |
-|-------|---------|
-| Lovely Day | `.local/share/my/themes/lovely-day/backgrounds/` |
-| Catppuccin Mocha | `.local/share/my/themes/catppuccin-mocha/backgrounds/` |
-| Matte Black | `.local/share/my/themes/matte-black/backgrounds/` |
-| Osaka Jade | `.local/share/my/themes/osaka-jade/backgrounds/` |
-| Everforest | `.local/share/my/themes/everforest/backgrounds/` |
-
----
-
-## Dependencies
-
-### Required
-
-| Package | Purpose |
-|---------|---------|
-| `hyprland` | Wayland compositor |
-| `hyprlock` | Lock screen |
-| `hypridle` | Idle daemon |
-| `hyprsunset` | Night light |
-| `waybar` | Status bar |
-| `rofi` | App launcher + keybind search |
-| `swaync` | Notification daemon |
-| `swayosd` | Volume / brightness OSD |
-| `ghostty` | Terminal emulator |
-| `brave` | Browser |
-| `nautilus` | File manager |
-| `obsidian` | Notes |
-| `playerctl` | Media key control |
-| `jq` | JSON parsing (used by keybind scripts) |
-| `swww` | Wallpaper daemon |
-| `cliphist` | Clipboard history |
-| `wl-clipboard` | Wayland clipboard (`wl-paste`) |
-| `imagemagick` | Image processing (wallpaper + screenshots) |
-| `hyprpolkitagent` | Authentication agent |
-| `gnome-keyring` | Secrets manager |
-
-## Optional Dependancies
-
-| Name                                                      | Description             |
-|-----------------------------------------------------------|-------------------------|
-| [my-shell](https://github.com/TylerDurham/my-shell)       | My `shell` dotfiles.    |
-| [my-hyprland](https://github.com/TylerDurham/my-nixos)    | My `NixOS` dotfiles. |
-| [my-neovim](https://github.com/TylerDurham/my-neovim)     | My `NeoVim` dotfiles.   |
-
-
-| Package | Purpose |
-|---------|---------|
-| Nerd Fonts (JetBrainsMono) | Required by Rofi and Waybar themes |
+- **Lua config split by concern.** Binds, monitors, workspaces, window rules and
+  the look each have their own file under `.config/hypr/config/`.
+- **Noctalia shell.** A minimal, square, flush bar plus the launcher, control
+  center, notifications, clipboard history, screenshots, wallpaper picker and
+  session menu, all driven by `noctalia msg`.
+- **Theme-following borders.** Noctalia's generated colors are loaded into
+  Hyprland at startup, so the active border's primary-to-surface gradient
+  changes with the theme.
+- **Three-monitor layout.** Laptop panel, Dell and BenQ, left to right. External
+  monitors are matched by description, so they keep their settings on any dock
+  port. Workspaces 1–3 are pinned to the BenQ.
+- **AZERTY-safe workspace keys.** The number-row binds use physical keycodes, so
+  they work on any keyboard layout.
+- **Gaming workspace.** Steam and game windows go to a `gaming` workspace on the
+  primary monitor, fullscreen and without decorations.
+- **Touchpad gestures.** Swipe between workspaces, and close, fullscreen or
+  float windows with gestures.
+- **AirPods support.** [LibrePods](https://github.com/kavishdevar/librepods)
+  runs as a user service, and Noctalia's bar shows an AirPods widget.
+- **Per-OS installer.** Modules with hooks install and remove packages and
+  services, the Plymouth boot splash, Thunderbolt, fingerprint unlock, and the
+  stowed dotfiles.
 
 ---
 
 ## Installation
 
-> These are dotfiles — stow or symlink them into your home directory. No installer script exists yet; manual placement is straightforward.
+The installer works out which OS you're on and runs the matching
+`install.d/<os>/install`. Right now only Arch-based systems are supported (Arch,
+CachyOS, EndeavourOS, Manjaro).
 
-**1. Clone the repo**
+**Prerequisites:** `git`, `stow`, `yay`, and the `sys-*` helpers from
+[my-shell](https://github.com/TylerDurham/my-shell) (`sys-get-os`,
+`sys-list-items`, `sys-select-items`) on your `PATH`. If `gum` is missing, the
+installer installs it itself.
 
 ```bash
 git clone https://github.com/TylerDurham/my-hyprland.git
 cd my-hyprland
+
+./install.sh              # run every module
+./install.sh --select     # choose which modules to run
+./install.sh --remove     # uninstall, in reverse order
 ```
 
-**2. Copy (or symlink) config files into `$HOME`**
+### Modules (`install.d/arch/`)
 
-```bash
-# Using GNU stow (recommended)
-stow --target="$HOME" .
+| Module | Description |
+|--------|-------------|
+| `mkdirs.sh` | Create directories that stow should not own (`~/.local/share/my/bin`) |
+| `packages.sh` | Install packages from `packages.txt` (pacman) and `aur-packages.txt` (yay), plus `fzf`/`git`/`python`/`vim`/`zsh` outside CachyOS |
+| `plymouth.sh` | Themed boot splash from [adi1090x/plymouth-themes](https://github.com/adi1090x/plymouth-themes), mkinitcpio hook, silent-boot kernel params |
+| `stow.sh` | Symlink `dotfiles/` into `$HOME` with GNU stow |
+| `thunderbolt.sh` | Install `bolt` and enable `bolt.service` so Thunderbolt devices can be authorized |
+| `fingerprint.sh` | **Opt-in.** Enroll fingerprints and add `pam_fprintd` to sudo and polkit. Only runs when picked with `--select` |
 
-# Or copy manually
-cp -r .config .local ~
-```
+Each module defines `on_init`, `on_install` and `on_uninstall` hooks, plus an
+optional `on_completed`. Modules can be re-run safely, because each step checks
+the current state before changing anything.
 
-**3. Ensure the custom scripts are executable**
+**Module knobs**
 
-```bash
-chmod +x ~/.local/share/my/bin/hypr-*
-```
+| Variable | Module | Effect |
+|----------|--------|--------|
+| `PLYMOUTH_PRESET` | plymouth | Theme preset: `lone` (default), `rings`, `cuts`, `circuit`, `connect` |
+| `FINGERS` | fingerprint | Fingers to enroll, e.g. `"right-index-finger left-thumb"` |
+| `ENROLL_ONLY=1` | fingerprint | Re-enroll fingers without touching PAM |
+| `WIRE_LOGIN=1` | fingerprint | Also wire up the SDDM greeter |
+| `NO_CONFIRM=1` | plymouth, thunderbolt | Skip pacman's confirmation prompt |
 
-**4. Add the scripts to your PATH**
+### Web apps (optional)
 
-The Hyprland config automatically prepends `~/.local/share/my/bin` to `$PATH`. To use the scripts outside of Hyprland, add this to your shell profile:
-
-```bash
-export PATH="$HOME/.local/share/my/bin:$PATH"
-export MY_LIB_DIR="$HOME/.local/share/my/lib"
-```
-
-**5. Set an active theme**
-
-```bash
-hypr-set-current-theme lovely-day   # or catppuccin-mocha, matte-black, osaka-jade, everforest
-hypr-set-current-theme              # or omit the name to pick one from an fzf menu
-```
-
-**6. Install web apps (optional)**
-
-Installs a curated set of web apps (Excalidraw, Logos, Gitea, GitHub, Claude.ai) as standalone browser-backed desktop entries:
+`install-webapps.sh` installs a few browser-backed desktop entries (Excalidraw,
+Logos, Gitea, GitHub, Claude.ai, LitCharts) using `hypr-install-webapp`:
 
 ```bash
 ./install-webapps.sh
-```
-
-**7. Start Hyprland**
-
-```bash
-Hyprland
 ```
 
 ---
 
 ## Keybinds
 
-> Press **`SUPER + K`** at any time to search keybinds interactively in Rofi.
+> Press **`SUPER + K`** to open Noctalia's keybind cheatsheet.
 
-### Applications
-
-| Keybind | Action |
-|---------|--------|
-| `SUPER + Return` | Open terminal (Ghostty) |
-| `SUPER + Space` | Open app launcher (Rofi) |
-| `SUPER + B` | Open browser (Brave) |
-| `SUPER + E` | Open file manager (Nautilus) |
-| `SUPER + N` | Open notes (Obsidian) |
-| `SUPER + K` | Search keybinds |
-| `SUPER + Q` | Close focused window |
-
-### System / Theme
+### Applications & Shell
 
 | Keybind | Action |
 |---------|--------|
-| `SUPER + A` | Toggle notification center (swaync) |
-| `SUPER + SHIFT + L` | Lock screen |
-| `SUPER + SHIFT + N` | Toggle night light |
-| `SUPER + SHIFT + S` | Open system control menu (lock, suspend, logout, reboot, shutdown) |
-| `SUPER + SHIFT + W` | Select and set wallpaper |
-| `SUPER + W` | Next wallpaper in the active theme |
-| `SUPER + CTRL + W` | Previous wallpaper in the active theme |
-| `SUPER + ALT + W` | Random wallpaper from the active theme |
+| `SUPER + Return` | Terminal (kitty) |
+| `SUPER + E` | File manager (Nautilus) |
+| `SUPER + W` | Browser (Brave) |
+| `SUPER + T` | Text editor |
+| `SUPER + C` / `XF86Calculator` | Calculator |
+| `CTRL + SHIFT + Escape` | btop |
+| `SUPER + Space` | Launcher |
+| `SUPER + .` | Emoji picker |
+| `SUPER + Tab` | Window switcher |
+| `SUPER + X` | Control center |
+| `SUPER + A` | Notifications |
+| `SUPER + V` | Clipboard history |
+| `SUPER + Z` | Noctalia settings |
+| `SUPER + SHIFT + W` | Wallpaper picker |
+| `SUPER + L` | Lock screen |
+| `SUPER + ALT + C` | Session menu |
 
-### Workspace Navigation
+### Windows
 
 | Keybind | Action |
 |---------|--------|
-| `SUPER + 1–9` | Switch to workspace |
-| `SUPER + [` | Cycle to next non-empty window |
-| `SUPER + SHIFT + [` | Next non-empty workspace |
-| `SUPER + SHIFT + ]` | Previous non-empty workspace |
+| `SUPER + Q` | Close window |
+| `SUPER + Escape` | Kill window (`hyprctl kill`) |
+| `SUPER + F` | Fullscreen |
+| `SUPER + D` | Maximize |
+| `SUPER + ALT + Space` | Toggle floating |
+| `SUPER + J` | Toggle split |
+| `SUPER + ←↑→↓` | Move focus |
+| `ALT + Tab` | Cycle windows |
+| `SUPER + SHIFT + ←↑→↓` | Move window |
+| `SUPER + LMB / RMB drag` | Move / resize window |
+| `SUPER + -` / `SUPER + +` | Zoom out / in |
 
-### Window Management
+### Workspaces & Monitors
 
 | Keybind | Action |
 |---------|--------|
-| `SUPER + SHIFT + 1–9` | Move window to workspace |
-| `SUPER + SHIFT + ←` | Move workspace to left monitor |
-| `SUPER + SHIFT + →` | Move workspace to right monitor |
-| `SUPER + LMB drag` | Move window |
-| `SUPER + SHIFT + LMB drag` | Resize window |
+| `SUPER + 1–0` | Go to workspace 1–10 |
+| `SUPER + CTRL + 1–0` | Go to workspace N on the current monitor |
+| `SUPER + CTRL + ←/→` | Previous / next workspace on the monitor |
+| `SUPER + CTRL + ↓` | Next empty workspace on the monitor |
+| `SUPER + SHIFT + 1–0` | Move window to workspace and follow it |
+| `SUPER + SHIFT + CTRL + 1–0` | Move window to workspace silently |
+| `SUPER + CTRL + SHIFT + ←/→` | Move window to previous / next workspace |
+| `SUPER + ALT + 1/2/3` | Focus laptop / Dell / BenQ monitor |
+| `SUPER + SHIFT + ALT + 1/2/3` | Move window to laptop / Dell / BenQ monitor |
+| `SUPER + S` | Toggle scratchpad |
+| `SUPER + SHIFT + S` | Move window to scratchpad |
+| `SUPER + scroll` | Cycle workspaces |
 
-### Media Keys
+### Utilities & Hardware
 
-| Key | Action |
-|-----|--------|
-| `XF86AudioRaiseVolume` | Volume up |
-| `XF86AudioLowerVolume` | Volume down |
-| `XF86AudioMute` | Toggle mute |
-| `XF86AudioMicMute` | Toggle mic mute |
-| `XF86MonBrightnessUp` | Brightness up |
-| `XF86MonBrightnessDown` | Brightness down |
-| `XF86AudioNext` | Next track |
-| `XF86AudioPlay` | Play / Pause |
-| `XF86AudioPrev` | Previous track |
+| Keybind | Action |
+|---------|--------|
+| `Print` | Screenshot region |
+| `SUPER + Print` | Screenshot full screen |
+| `SUPER + P` | Color picker (`hyprpicker`) |
+| Volume / mic / brightness keys | Handled by Noctalia (with OSD), work while locked |
+| Media keys | Play/pause, next, previous through Noctalia |
 
 ### Touchpad Gestures
 
 | Gesture | Action |
 |---------|--------|
-| 3-finger swipe left/right | Scroll / move windows |
-| 3-finger swipe left/right + SHIFT | Switch workspaces |
-| 3-finger swipe down + ALT | Close window |
-| 4-finger pinch out | Toggle fullscreen |
-
----
-
-## Themes
-
-Themes live under `.local/share/my/themes/`. Each theme contains:
-
-```
-theme-name/
-├── backgrounds/       # Wallpaper variants
-├── @palette.toml      # Color palette (accent1/2, background, surfaces, …)
-├── icons.theme        # Icon set
-├── btop.theme         # btop system monitor
-├── neovim.lua         # Neovim colorscheme
-├── vscode.json        # VS Code theme
-├── waybar.css         # Waybar stylesheet (also read by SwayOSD)
-├── rofi.rasi          # Rofi stylesheet
-├── hyprland.conf      # Color vars — sourced by hyprlock, parsed by looknfeel.lua
-├── ghostty.conf       # Ghostty palette (included via ~/.config/my/theme)
-└── nmtui.colors       # nmtui palette (via NEWT_COLORS_FILE)
-```
-
-Every theme also ships stylesheets for GTK, Kitty, Ghostty, Alacritty, Zed, Zellij,
-Mako, Wofi, Walker, Warp, Chromium, and Vencord. Some still carry a legacy flat
-`colors.toml` alongside `@palette.toml`; nothing reads it except the fallback in
-`theme.lua`.
-
-**Switch themes at runtime:**
-
-```bash
-hypr-set-current-theme <theme-name>   # or run it with no arguments to pick from an fzf menu
-```
-
-This updates the wallpaper and color symlinks, restarts Waybar and SwayOSD, reloads
-Ghostty (SIGUSR2), and reloads Hyprland — which re-reads the palette, so window border
-colors follow the theme too.
-
-Hyprland's border colors are read at config-eval time by `modules/lib/theme.lua`, which
-looks for `hyprland.conf`, then `@palette.toml`, then `colors.toml` in the active theme,
-falling back to built-in defaults if none are present.
-
-**Cycle the active theme's wallpapers:** `SUPER + W` (next), `SUPER + CTRL + W`
-(previous), `SUPER + ALT + W` (random) — see `hypr-cycle-wallpaper --help`.
+| 4-finger swipe left/right | Switch workspace |
+| 3-finger swipe down | Close window |
+| 3-finger swipe up | Fullscreen |
+| 3-finger swipe left | Toggle floating |
 
 ---
 
@@ -278,50 +192,82 @@ falling back to built-in defaults if none are present.
 
 ```
 .
-├── .config/
-│   ├── hypr/
-│   │   ├── hyprland.lua          # Main entry point
-│   │   ├── hypridle.conf         # Idle / lock timeouts
-│   │   ├── hyprlock.conf         # Lock screen appearance
-│   │   ├── hyprsunset.conf       # Night light schedule
-│   │   └── modules/
-│   │       ├── autostart.lua     # Startup applications
-│   │       ├── globals.lua       # Default programs and modifier key
-│   │       ├── keybinds.lua      # All keyboard bindings
-│   │       ├── layouts.lua       # Tiling layout config
-│   │       ├── looknfeel.lua     # Gaps, borders, blur, animations
-│   │       ├── monitors.lua      # Monitor layout and scaling
-│   │       ├── windows.lua       # Window rules and floats
-│   │       ├── workspaces.lua    # Workspace-to-monitor assignment
-│   │       └── applications/     # Per-app window rules
-│   ├── rofi/                     # Rofi launcher themes and modules
-│   │   └── modules/              # JSON module definitions (system, etc.)
-│   └── swayosd/                  # OSD styling
-└── .local/share/my/
-    ├── bin/                      # Custom shell scripts
-    ├── lib/                      # Shared bash libraries
-    └── themes/                   # Color themes
+├── install.sh                    # OS detection → install.d/<os>/install
+├── install-webapps.sh            # Optional web app desktop entries
+├── install.d/
+│   └── arch/
+│       ├── install               # Module runner (hooks, --select, --remove)
+│       └── *.sh                  # Modules (see table above)
+├── media/                        # README images
+└── dotfiles/                     # Stowed into $HOME
+    ├── .config/
+    │   ├── hypr/
+    │   │   ├── hyprland.lua      # Entry point; loads config/* and Noctalia colors
+    │   │   ├── xdph.conf         # xdg-desktop-portal-hyprland settings
+    │   │   └── config/
+    │   │       ├── animations.lua
+    │   │       ├── autostart.lua     # dbus env, Noctalia
+    │   │       ├── binds.lua         # All keybinds
+    │   │       ├── colors.lua        # CachyOS palette constants
+    │   │       ├── decorations.lua   # Gaps, borders, rounding, blur, opacity
+    │   │       ├── environment.lua   # hl.env (unused under UWSM)
+    │   │       ├── inputs.lua        # Input + touchpad gestures
+    │   │       ├── misc.lua          # dwindle, VRR, swallow, xwayland
+    │   │       ├── monitors.lua      # Three-monitor layout
+    │   │       ├── variables.lua     # Default apps, monitor names, workspace count
+    │   │       ├── windowrules.lua   # Window + Noctalia layer rules
+    │   │       └── workspaces.lua    # Workspace-to-monitor pinning
+    │   ├── noctalia/config.toml  # Bar, panels, session menu, theme templates
+    │   ├── uwsm/env              # Session environment (cursor, Qt, Electron)
+    │   ├── autostart/            # XDG autostart (1Password, Dropbox)
+    │   ├── systemd/user/         # librepods.service
+    │   └── mimeapps.list
+    └── .local/share/my/
+        ├── bin/                  # dropbox-login, hypr-install-webapp, hypr-launch-webapp
+        └── themes/               # Legacy theme packs from the pre-Noctalia setup
 ```
 
 ---
 
 ## Customisation
 
-Default programs are defined in `.config/hypr/modules/globals.lua`:
+**Default apps, monitors and workspace count** are in
+`.config/hypr/config/variables.lua`:
 
 ```lua
-g.programs = {
-  TERMINAL     = "ghostty",
-  FILE_MANAGER = "nautilus",
-  APP_LAUNCHER = "~/.local/share/my/bin/hypr-launch-applications",
-  BROWSER      = "brave",
-  NOTES        = "obsidian",
-}
+TERMINAL     = "kitty"
+FILE_MANAGER = "nautilus"
+BROWSER      = "brave"
+EDITOR       = "gnome-text-editor --new-window"
+CALCULATOR   = "gnome-calculator"
 
-g.keybinds = {
-  MAIN_MOD = "SUPER",
-}
+MONITOR1 = "eDP-1"                                -- laptop panel (left)
+MONITOR2 = "desc:Dell Inc. DELL S2725QS 7DCMT84"  -- Dell (middle)
+MONITOR3 = "desc:BNQ BenQ RD280UG EMF6T00620087"  -- BenQ (right)
+PRIMARY_MONITOR = MONITOR3
+
+NUM_WPM = 10
 ```
+
+To match a different monitor by description, find its string with
+`hyprctl monitors`, then set modes and positions in `monitors.lua`.
+
+**Session environment variables** go in `.config/uwsm/env`. Apps are launched
+through `uwsm app --`. If you don't use UWSM, clear `launchPrefix` in
+`binds.lua` and set the variables in `environment.lua` instead.
+
+**Theme, bar and panels** are set in Noctalia's settings (`SUPER + Z`), which
+saves them to `.config/noctalia/config.toml`.
+
+---
+
+## Related
+
+| Repo | Description |
+|------|-------------|
+| [my-shell](https://github.com/TylerDurham/my-shell) | Shell dotfiles and the `sys-*` helpers the installer uses |
+| [my-nixos](https://github.com/TylerDurham/my-nixos) | NixOS dotfiles |
+| [my-neovim](https://github.com/TylerDurham/my-neovim) | Neovim config |
 
 ---
 
