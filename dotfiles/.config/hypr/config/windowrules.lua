@@ -54,6 +54,10 @@ hl.window_rule({ match = { class = "^(org\\.kde\\.keditfiletype)$" }, float = tr
 hl.window_rule({ match = { class = "^(org\\.kde\\.ark)$" }, size = { "max(monitor_w, monitor_h)*0.40", "min(monitor_w, monitor_h)*0.40" } })
 hl.window_rule({ match = { class = "^(.*swash)$", title = "^(Swash)$" }, min_size = { "max(monitor_w, monitor_h)*0.35", "min(monitor_w, monitor_h)*0.35" }, float = true })
 hl.window_rule({ match = { class = "^(dev\\.)?(noctalia\\.Noctalia(\\.Settings)?)$" }, float = true, size = { "monitor_w*0.70", "monitor_h*0.70" } })
+
+-- Obsidian settings opens as its own window; initial_title avoids catching a note named "Settings"
+hl.window_rule({ match = { class = "^(md\\.obsidian\\.Obsidian|obsidian)$", initial_title = "^Settings - .*$" }, float = true, center = true, size = { "monitor_w*0.55", "monitor_h*0.65" } })
+
 hl.window_rule({
     match = {
         class = "^(org\\.kde\\.dolphin)$",
