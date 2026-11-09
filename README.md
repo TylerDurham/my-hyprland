@@ -77,16 +77,18 @@ cd my-hyprland
 
 | Module | Description |
 |--------|-------------|
-| `mkdirs.sh` | Create directories that stow should not own (`~/.local/share/my/bin`) |
-| `packages.sh` | Install packages from `packages.txt` (pacman) and `aur-packages.txt` (yay), plus `fzf`/`git`/`python`/`vim`/`zsh` outside CachyOS |
-| `plymouth.sh` | Themed boot splash from [adi1090x/plymouth-themes](https://github.com/adi1090x/plymouth-themes), mkinitcpio hook, silent-boot kernel params |
-| `stow.sh` | Symlink `dotfiles/` into `$HOME` with GNU stow |
-| `thunderbolt.sh` | Install `bolt` and enable `bolt.service` so Thunderbolt devices can be authorized |
-| `flatpaks.sh` | Install `flatpak`, add the Flathub remote and install the apps in `flatpaks.txt` |
-| `tty-font.sh` | Set the console font to Terminus (`ter-132b`) and rebuild the initramfs so the LUKS prompt uses it |
-| `fingerprint.sh` | **Opt-in.** Enroll fingerprints and add `pam_fprintd` to sudo and polkit. Only runs when picked with `--select` |
+| `10-packages.sh` | Install packages from `10-packages.txt` (pacman) and `10-aur-packages.txt` (yay), plus `fzf`/`git`/`python`/`vim`/`zsh` outside CachyOS |
+| `20-mkdirs.sh` | Create directories that stow should not own (`~/.local/share/my/bin`) |
+| `30-stow.sh` | Symlink `dotfiles/` into `$HOME` with GNU stow |
+| `40-brave.sh` | Install `brave-bin` and the managed browser policy in `40-brave.json` |
+| `50-flatpaks.sh` | Install `flatpak`, add the Flathub remote and install the apps in `50-flatpaks.txt` |
+| `60-thunderbolt.sh` | Install `bolt` and enable `bolt.service` so Thunderbolt devices can be authorized |
+| `70-tty-font.sh` | Set the console font to Terminus (`ter-132b`) and rebuild the initramfs so the LUKS prompt uses it |
+| `80-plymouth.sh` | Themed boot splash from [adi1090x/plymouth-themes](https://github.com/adi1090x/plymouth-themes), mkinitcpio hook, silent-boot kernel params |
+| `90-fingerprint.sh` | **Opt-in.** Enroll fingerprints and add `pam_fprintd` to sudo and polkit. Only runs when picked with `--select` |
 
-Each module defines `on_init`, `on_install` and `on_uninstall` hooks, plus an
+Modules run in filename order and are removed in reverse, so the numeric
+prefix sets the order. Each module defines `on_init`, `on_install` and `on_uninstall` hooks, plus an
 optional `on_completed`. Modules can be re-run safely, because each step checks
 the current state before changing anything.
 
