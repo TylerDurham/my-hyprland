@@ -2,3 +2,4 @@
 dropbox                # Dropbox sync client (run as a user systemd service)
 dropbox-cli            # Command-line interface for Dropbox
 librepods
+spotify
