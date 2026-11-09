@@ -24,7 +24,7 @@ pcall(function()
     hl.config({
         general = {
             col = {
-                active_border = { colors = { c.primary, c.surface }, angle = 30 },
+                active_border = { colors = { c.primary, c.surface }, angle = 25 },
             },
         },
     })
