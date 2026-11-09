@@ -2,3 +2,4 @@ libappindicator
 mpv
 nautilus
 obsidian
+signal-desktop
