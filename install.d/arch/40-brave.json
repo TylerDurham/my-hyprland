@@ -1,0 +1,20 @@
+{
+  "HomepageLocation": "https://home.snork.co",
+  "HomepageIsNewTabPage": false,
+  "ShowHomeButton": true,
+  "RestoreOnStartup": 4,
+  "RestoreOnStartupURLs": ["https://home.snork.co"],
+
+  "ExtensionInstallForcelist": [
+  "kgcjekpmcjjogibpjebkhaanilehneje;https://clients2.google.com/service/update2/crx",
+  "aeblfdkhhhdcdjpifhhbdiojplfjncoa;https://clients2.google.com/service/update2/crx"
+],
+
+  "BraveRewardsDisabled": true,
+  "BraveWalletDisabled": true,
+  "BraveVPNDisabled": true,
+  "BraveAIChatEnabled": false,
+  "BraveP3AEnabled": false,
+  "TorDisabled": true,
+  "PasswordManagerEnabled": false
+}
