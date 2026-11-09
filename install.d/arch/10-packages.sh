@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 #
-# packages.sh - install repo and AUR packages from the lists next to this file
+# 10-packages.sh - install repo and AUR packages from the lists next to this file
 #
-#   packages.txt      official repo packages, installed with pacman
-#   aur-packages.txt  AUR packages, installed with yay
+#   10-packages.txt      official repo packages, installed with pacman
+#   10-aur-packages.txt  AUR packages, installed with yay
 #
 # One package per line; blank lines and '#' comments (whole-line or trailing)
 # are ignored.
 
-readonly PACKAGES_FILE="$INSTALL_ROOT/packages.txt"
-readonly AUR_PACKAGES_FILE="$INSTALL_ROOT/aur-packages.txt"
+readonly PACKAGES_FILE="$INSTALL_ROOT/10-packages.txt"
+readonly AUR_PACKAGES_FILE="$INSTALL_ROOT/10-aur-packages.txt"
 
 # Print the package names in list file $1, without comments or blank lines.
 read_package_list() {

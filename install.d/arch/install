@@ -108,7 +108,7 @@ for module in "${modules[@]}"; do
 
     source "$module"
 
-    # Opt-in modules (MODULE_OPT_IN=1, e.g. fingerprint.sh, which edits PAM)
+    # Opt-in modules (MODULE_OPT_IN=1, e.g. 90-fingerprint.sh, which edits PAM)
     # only run when picked with --select, never on a full install or removal.
     if [[ "${MODULE_OPT_IN:-0}" -eq 1 && -z "$SELECT" ]]; then
       info "skipping opt-in module '$(basename "$module")'; run with --select to include it"
@@ -132,3 +132,12 @@ for module in "${modules[@]}"; do
       on_completed
     fi
 done
+
+# Modules that change what goes into the initramfs (e.g. 70-tty-font.sh,
+# 80-plymouth.sh) set REBUILD_INITRAMFS=1 instead of running mkinitcpio
+# themselves, so a full pass rebuilds once instead of once per module.
+if [[ -n "${REBUILD_INITRAMFS:-}" ]]; then
+  info "rebuilding initramfs..."
+  sudo mkinitcpio -P \
+    || fatal "mkinitcpio -P failed; check its output above before rebooting."
+fi

@@ -1,4 +1,4 @@
-# fingerprint.sh - set up a fingerprint reader and wire it into unlock prompts
+# 90-fingerprint.sh - set up a fingerprint reader and wire it into unlock prompts
 #
 # What gets wired where:
 #   sudo, polkit-1  pam_fprintd.so is added as 'sufficient' ahead of the password
@@ -103,7 +103,7 @@ on_install() {
   verify_pam_module
 
   warn "About to edit PAM. Keep this shell open and test in a second terminal;"
-  warn "revert with './install.sh --remove --select' (pick fingerprint.sh) if a"
+  warn "revert with './install.sh --remove --select' (pick 90-fingerprint.sh) if a"
   warn "prompt stops accepting your password."
 
   for svc in "${PAM_SERVICES[@]}"; do

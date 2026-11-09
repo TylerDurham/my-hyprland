@@ -1,4 +1,4 @@
-# 10-plymouth.sh - install (or remove) a Plymouth boot splash
+# 80-plymouth.sh - install (or remove) a Plymouth boot splash
 #
 # Fetches a themed pack from adi1090x/plymouth-themes and sets it as the
 # default Plymouth theme, wires the 'plymouth' hook into mkinitcpio's HOOKS
@@ -106,11 +106,10 @@ on_install() {
   remove_legacy_cmdline
   add_cmdline_params
 
-  log "$FUNCNAME: Rebuilding initramfs..."
-  sudo mkinitcpio -P \
-      || die "mkinitcpio -P failed; check its output above before rebooting."
+  # The installer rebuilds the initramfs once, after every module has run.
+  REBUILD_INITRAMFS=1
 
-  info "Done: preset '${PLYMOUTH_PRESET}' (theme '${THEME}') is now the default. Reboot to see it."
+  info "Done: preset '${PLYMOUTH_PRESET}' (theme '${THEME}') is now the default. Reboot (after the initramfs rebuild) to see it."
 }
 
 # Called by source script. Uninstalls the module.
@@ -137,11 +136,10 @@ on_uninstall() {
   log "$FUNCNAME: Removing packages..."
   uninstall_packages
 
-  log "$FUNCNAME: Rebuilding initramfs..."
-  sudo mkinitcpio -P \
-      || die "mkinitcpio -P failed; check its output above before rebooting."
+  # The installer rebuilds the initramfs once, after every module has run.
+  REBUILD_INITRAMFS=1
 
-  info "Done: Plymouth removed and initramfs rebuilt."
+  info "Done: Plymouth removed; initramfs will be rebuilt."
 }
 
 # -------------------------------------------------------------------------------------------------

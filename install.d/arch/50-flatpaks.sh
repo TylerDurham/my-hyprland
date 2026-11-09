@@ -1,9 +1,9 @@
-# flatpaks.sh - install (or remove) the flatpaks listed in flatpaks.txt
+# 50-flatpaks.sh - install (or remove) the flatpaks listed in 50-flatpaks.txt
 #
 # Flatpaks come from a remote rather than a repository, so this module adds
-# Flathub before installing anything. It installs the flatpak package itself
-# too: modules run in alphabetical order, so this one is reached before
-# packages.sh on a full pass and cannot assume flatpak is already there.
+# Flathub before installing anything. It also installs the flatpak package
+# itself, so it still works when picked alone with --select (10-packages.sh
+# normally installs it first on a full pass).
 #
 # Environment knobs:
 #   SCOPE=user      install into ~/.local/share/flatpak instead of system-wide
@@ -14,7 +14,7 @@
 # -------------------------------------------------------------------------------------------------
 
 readonly CWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"  # Current directory (relative to this file)
-readonly FLATPAK_LIST="${FLATPAK_LIST:-${CWD}/flatpaks.txt}"  # File listing the flatpaks to install
+readonly FLATPAK_LIST="${FLATPAK_LIST:-${CWD}/50-flatpaks.txt}"  # File listing the flatpaks to install
 readonly REMOTE="flathub"                                     # Remote the listed apps come from
 readonly REMOTE_URL="https://dl.flathub.org/repo/flathub.flatpakrepo"
 SCOPE="${SCOPE:-system}"                                      # system or user
@@ -122,8 +122,8 @@ read_flatpak_list() {
         || die "No flatpaks listed in ${FLATPAK_LIST}"
 }
 
-# packages.txt also lists flatpak, but this module runs before that one on a
-# full pass, so it cannot wait for it.
+# 10-packages.txt also lists flatpak, but this module may be picked alone with
+# --select, so it cannot rely on that.
 install_flatpak() {
     if is_installed flatpak; then
         info "flatpak already installed."

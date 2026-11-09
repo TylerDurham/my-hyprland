@@ -1,4 +1,4 @@
-# thunderbolt.sh - install boltd, the Thunderbolt device manager
+# 60-thunderbolt.sh - install boltd, the Thunderbolt device manager
 #
 # Thunderbolt devices are not trusted until they are authorized, so a freshly
 # plugged dock or eGPU stays dark until boltd is running to enroll it. Enabling
